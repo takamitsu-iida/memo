@@ -1,3 +1,8 @@
+# git-memo.md
+[//]:# ( git / github )
+
+git関連の備忘録。
+
 # git基本コマンド
 
 ## 設定の確認
