@@ -1,7 +1,7 @@
 
 # visual studio code
 
-[//]:# (vscode vs code)
+[//]:# ( visual studio code / vs code / vscode )
 
 ## 利用している拡張機能
 
@@ -14,6 +14,13 @@
 - Partial Diff 0.1.0
 - final-newline 0.2.0
 - Jasmine code snippets 0.2.0
+
+
+# よく使うキー
+
+- ctrl-shift-p コマンド入力
+- ctrl-@ コマンドプロンプト
+- ctrl-b サイドメニューの表示を消す
 
 
 # 基本設定
