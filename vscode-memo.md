@@ -6,13 +6,14 @@
 ## 利用している拡張機能
 
 - Angular Material Snippets 0.3.1
-- ESLint 0.10.18
-- Python 0.3.22
+- ESLint 1.0.5
+- Python 0.3.24
 - Angular UI Bootstrap Snippets 4.0.6
 - Auto-Open Markdown preview 0.0.3
 - beautify 0.1.10
 - Partial Diff 0.1.0
 - final-newline 0.2.0
+- Toggle Proxy 0.2.0
 - Jasmine code snippets 0.2.0
 
 
