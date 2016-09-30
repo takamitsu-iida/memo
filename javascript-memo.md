@@ -1,12 +1,30 @@
-# javascript-memo.md
+# JavaScript関連の備忘録
 
 [//]:# (javascript / js / typescript / ユニットテスト / unit test / karma / protractor)
 
-JavaScript関連の備忘録。
+
+[//]:# (@@@ 2016.09.21)
+# JSONデータをtextareaにバインディングする例
+
+http://codepen.io/maxbates/pen/AfEHz
+
+
+[//]:# (@@@ 2016.09.19)
+# angular directiveでエレメントのサイズを得る
+
+```js
+  angular.module(moduleName).directive('iidaNxShell', ['$timeout', function($timeout) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+        // angularのディレクティブでサイズを得るにはこうする
+        var width = element.prop('offsetWidth');
+        var height = element.prop('offsetHeight');
+```
 
 
 [//]:# (@@@ 2016.09.14)
-# getter setter を使う
+# angularでgetter setter を使う
 
 ```html
 <md-switch ng-model="sc.settingParam.debug" ng-model-options="{ getterSetter: true }" aria-label="Switch debug">
