@@ -5,12 +5,26 @@ APIのマニュアルを見れば、メソッドとプロパティが分かる�
 EnterpriseNetworkLayoutはバグってるので、修正が必要。
 
 
+[//]:# (@@@ 20160930)
+## 設定をあとから変える
+
+
+linkConfigの場合は、こうする。
+
+```js
+var lc = topology.linkConfig();
+lc.linkType = 'curve';
+topology.linkConfig(lc);
+```
+
 [//]:# (@@@ 20160928)
 ## ノードを消す
 
 データを操作するわけではなく、見せる・見せないを制御する。
 
+```js
 topology.graph().getVertex(0).visible(false);
+```
 
 
 [//]:# (@@@ 20160925)
