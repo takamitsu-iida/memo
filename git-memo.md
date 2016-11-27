@@ -24,6 +24,12 @@ git config --global user.email takamitsu.iida@gmail.com
 git config --global core.quotepath false
 ```
 
+## 改行コードを自動変換しない
+
+```
+git config --global core.autoCRLF false
+```
+
 ## リポジトリの新規作成
 
 ```

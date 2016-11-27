@@ -3,6 +3,65 @@
 [//]:# (javascript / js / typescript / ユニットテスト / unit test / karma / protractor)
 
 
+[//]:# (@@@ 2016.11.03)
+# gruntでjsファイルを連結
+
+ローカルにインストールするので、プロジェクトの位置まで移動する
+
+```
+cd ディレクトリ
+```
+
+```
+npm init
+```
+
+いろいろ質問されるが基本は全部リターンでいい。
+package.json
+が作られているのを確認する。
+
+
+```
+npm install grunt-contrib-concat -save-dev
+npm install grunt-contrib-uglify -save-dev
+```
+
+設定ファイル```gruntfile.js```を作る。
+
+
+```js
+module.exports = function (grunt) {
+    var pkg = grunt.file.readJSON('package.json');
+    grunt.initConfig({
+        concat: {
+            files: {
+                // 元ファイルの指定
+                src : 'static/site/js/*.js',
+                // 出力ファイルの指定
+                dest: 'static/site/js/dist/d3iida.js'
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    // 出力ファイル: 元ファイル
+                    'static/site/js/dist/d3iida-min.js': 'static/site/js/dist/d3iida.js'
+                }
+            }
+        }
+    });
+
+    // プラグインのロード・デフォルトタスクの登録
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.registerTask('default', ['concat', 'uglify']);
+};
+```
+
+
+
+
 [//]:# (@@@ 2016.09.21)
 # JSONデータをtextareaにバインディングする例
 
