@@ -3,6 +3,54 @@
 [//]:# (javascript / js / typescript / ユニットテスト / unit test / karma / protractor)
 
 
+[//]:# (@@@)
+# web color 色見本
+
+http://www.htmq.com/color/index.shtml
+
+
+[//]:# (@@@)
+# グラデーションの色
+
+ColorBrewer2
+
+http://colorbrewer2.org/#type=diverging&scheme=PRGn&n=9
+
+
+
+[//]:# (@@@ 2016.12.03)
+
+# d3.jsで大量のデータ配列
+
+データ配列を分割して、ちょっとずつバッチ処理することで、ブラウザが固まることを阻止する。
+
+https://engineering.mongodb.com/post/digging-into-d3-internals-to-eliminate-jank/
+
+
+[//]:# (@@@ 2016.12.02)
+
+# d3.jsで一時的なログ表示
+
+
+```
+var div = d3.select('body').append('div').style('float', 'left');
+
+function log(message) {
+  return function() {
+    div.append('p')
+      .text(message)
+      .style('background', '#ff0')
+      .transition()
+      .duration(2500)
+      .style('opacity', 1e-6)
+      .remove();
+  };
+}
+
+.on('click', log('clicked'))
+```
+
+
 [//]:# (@@@ 2016.11.03)
 # gruntでjsファイルを連結
 
@@ -58,8 +106,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['concat', 'uglify']);
 };
 ```
-
-
 
 
 [//]:# (@@@ 2016.09.21)
@@ -1272,12 +1318,6 @@ splice()を使う
         }
       });
 ```
-
-
-[//]:# (@@@)
-# web color 色見本
-
-http://www.htmq.com/color/index.shtml
 
 
 [//]:# (@@@)

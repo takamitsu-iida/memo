@@ -3,28 +3,37 @@
 
 [//]:# ( visual studio code / vs code / vscode )
 
-## 利用している拡張機能
-
-- Angular Material Snippets 0.3.1
-- ESLint 1.0.5
-- Python 0.3.24
-- Angular UI Bootstrap Snippets 4.0.6
-- Auto-Open Markdown preview 0.0.3
-- beautify 0.1.10
-- Partial Diff 0.1.0
-- final-newline 0.2.0
-- Toggle Proxy 0.2.0
-- Jasmine code snippets 0.2.0
 
 
-# よく使うキー
+## 利用している拡張機能（必須）
+
+- Auto-Open Markdown preview
+- beautify
+- ESLint
+- final-newline
+- Python
+- Toggle Proxy
+
+
+## 利用している拡張機能（微妙）
+
+- Angular Material snippets
+- Angular UI Bootstrap Snippets
+- Partial Diff
+- Jasmine code snippets
+
+
+# 頻繁に使うキー
 
 - ctrl-shift-p コマンド入力
 - ctrl-@ コマンドプロンプト
-- ctrl-b サイドメニューの表示を消す
+- ctrl-b サイドメニューを表示する、隠す
 
 
 # 基本設定
+
+ファイル→基本設定→ユーザ設定
+
 
 ```js
 
@@ -39,7 +48,7 @@
   "http.proxyStrictSSL": false,
 
   // エディターで空白文字を表示するかどうかを制御します
-  "editor.renderWhitespace": true,
+  "editor.renderWhitespace": "boundary",
 
   // タブ 1 つに相当するスペースの数。
   "editor.tabSize": 2,
@@ -73,7 +82,7 @@
         2,
         "single"
       ],
-      "linebreak-style": [
+       "linebreak-style": [
         2,
         "unix"
       ],
@@ -90,7 +99,11 @@
     "extends": "eslint:recommended"
   },
 
-  "python.linter": "flake8"
+  // pylint
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+
+  "typescript.check.tscVersion": false
 
 }
 ```
