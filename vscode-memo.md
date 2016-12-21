@@ -3,9 +3,10 @@
 
 [//]:# ( visual studio code / vs code / vscode )
 
+Visual Studio Codeの設定メモ。
 
 
-## 利用している拡張機能（必須）
+## 拡張機能（必須）
 
 - Auto-Open Markdown preview
 - beautify
@@ -15,7 +16,7 @@
 - Toggle Proxy
 
 
-## 利用している拡張機能（微妙）
+## 拡張機能（なくてもいいかな）
 
 - Angular Material snippets
 - Angular UI Bootstrap Snippets
@@ -23,14 +24,14 @@
 - Jasmine code snippets
 
 
-# 頻繁に使うキー
+## 頻繁に使うキー
 
 - ctrl-shift-p コマンド入力
 - ctrl-@ コマンドプロンプト
 - ctrl-b サイドメニューを表示する、隠す
 
 
-# 基本設定
+## 基本設定
 
 ファイル→基本設定→ユーザ設定
 
