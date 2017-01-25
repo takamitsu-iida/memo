@@ -6,21 +6,27 @@
 Visual Studio Codeの設定メモ。
 
 
-## 拡張機能（必須）
+## 拡張機能（各言語共通）
 
 - Auto-Open Markdown preview
 - beautify
-- ESLint
 - final-newline
-- Python
 - Toggle Proxy
 
+## 拡張機能（JavaScript）
 
-## 拡張機能（なくてもいいかな）
+- ESLint
+
+
+## 拡張機能（Python）
+
+- Python
+
+
+## 拡張機能（なくてもいいかも）
 
 - Angular Material snippets
 - Angular UI Bootstrap Snippets
-- Partial Diff
 - Jasmine code snippets
 
 
@@ -40,10 +46,10 @@ Visual Studio Codeの設定メモ。
 
 // 既定の設定を上書きするには、このファイル内に設定を挿入します
 {
-
   // HTTP 構成
   // 使用するプロキシ設定。設定されていない場合、環境変数 http_proxy および https_proxy から取得されます。
-  "http.proxy": "", // "http://username:password@proxy-server:8080",
+  // "http.proxy": "http://username:password@proxyserver:8080",
+  "http.proxy": "",
 
   // 提供された CA の一覧と照らしてプロキシ サーバーの証明書を確認するかどうか。
   "http.proxyStrictSSL": false,
@@ -55,7 +61,7 @@ Visual Studio Codeの設定メモ。
   "editor.tabSize": 2,
 
   // ファイルを開くと、そのファイルの内容に基づいて `editor.tabSize` と `editor.insertSpaces` が検出されます。
-  "editor.detectIndentation": false,
+  "editor.detectIndentation": true,
 
   // エディターで最後の行を越えてスクロールするかどうかを制御します
   "editor.scrollBeyondLastLine": false,
@@ -100,11 +106,15 @@ Visual Studio Codeの設定メモ。
     "extends": "eslint:recommended"
   },
 
-  // pylint
+  // python
   "python.linting.pylintEnabled": true,
-  "python.linting.flake8Enabled": false,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfPath": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style={based_on_style: chromium, indent_width: 4, continuation_indent_width: 4, column_limit: 120}"
+  ],
 
+  // typescript
   "typescript.check.tscVersion": false
-
 }
 ```
