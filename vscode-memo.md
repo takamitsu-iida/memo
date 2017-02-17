@@ -48,7 +48,7 @@ Visual Studio Codeの設定メモ。
 {
   // HTTP 構成
   // 使用するプロキシ設定。設定されていない場合、環境変数 http_proxy および https_proxy から取得されます。
-  // "http.proxy": "http://username:password@proxyserver:8080",
+  // "http.proxy": "http://username:passowrd@proxy-addr:8080",
   "http.proxy": "",
 
   // 提供された CA の一覧と照らしてプロキシ サーバーの証明書を確認するかどうか。
@@ -111,7 +111,7 @@ Visual Studio Codeの設定メモ。
   "python.formatting.provider": "yapf",
   "python.formatting.yapfPath": "yapf",
   "python.formatting.yapfArgs": [
-    "--style={based_on_style: chromium, indent_width: 4, continuation_indent_width: 4, column_limit: 120}"
+    "--style={based_on_style: chromium, indent_width: 2, continuation_indent_width: 4, column_limit: 120}"
   ],
 
   // typescript
