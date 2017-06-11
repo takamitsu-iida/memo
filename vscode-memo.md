@@ -36,11 +36,31 @@ Visual Studio Codeの設定メモ。
 - ctrl-@ コマンドプロンプト
 - ctrl-b サイドメニューを表示する、隠す
 
+<BR>
+
+## メニューの日本語化
+
+バージョンアップでメニュー表示を英語に戻されることがあるので、手動で日本語に変える。
+
+1. Ctrl+Shift+P でコマンドパレットを開く
+1. Configure Languageでlocale.jsonを開く
+1. localeをjaに設定する
+1. 再起動する
+
+```js
+{
+    // VSCode の表示言語を定義します。
+    // サポートされている言語の一覧については、https://go.microsoft.com/fwlink/?LinkId=761051 をご覧ください。
+    // VSCode の再起動に必要な値を変更します。
+    "locale":"ja"
+}
+```
+
+<BR>
 
 ## 基本設定
 
 ファイル→基本設定→ユーザ設定
-
 
 ```js
 
