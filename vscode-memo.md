@@ -60,7 +60,7 @@ Visual Studio Codeの設定メモ。
 
 ## 基本設定
 
-ファイル→基本設定→ユーザ設定
+ファイル→基本設定→設定
 
 ```js
 
@@ -73,6 +73,9 @@ Visual Studio Codeの設定メモ。
 
   // 提供された CA の一覧と照らしてプロキシ サーバーの証明書を確認するかどうか。
   "http.proxyStrictSSL": false,
+
+  // ミニマップを表示するかどうかを制御します
+  "editor.minimap.enabled": false,
 
   // エディターで空白文字を表示するかどうかを制御します
   "editor.renderWhitespace": "boundary",
@@ -138,3 +141,5 @@ Visual Studio Codeの設定メモ。
   "typescript.check.tscVersion": false
 }
 ```
+
+20170611 バージョンアップで追加されたminimap機能が邪魔なのでfalseにするよう変更。
