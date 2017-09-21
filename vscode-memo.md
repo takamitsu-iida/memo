@@ -23,6 +23,11 @@ Visual Studio Codeの設定メモ。
 - Python
 
 
+## 拡張機能（YAML）
+
+- YAML
+
+
 ## 拡張機能（なくてもいいかも）
 
 - Angular Material snippets
