@@ -35,6 +35,7 @@ pyenv global 3.6.3
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 ```
 
+
 # vagrant
 
 このサイトからダウンロードしてインストールする。
@@ -229,6 +230,58 @@ $ cd ~/.node-red/
 $ npm install node-red-node-mysql
 $ node-red
 ```
+
+---
+
+# redisサーバ(Ubuntuボックス)
+
+
+インストール
+
+```
+$ sudo apt-get -y install redis-server
+```
+
+インストールすると自動で起動する。
+
+
+設定
+
+/etc/redis/redis.conf
+
+```
+# 待ち受けポート
+port 6379
+
+# デフォルトはローカルホストからしか接続しない
+# 全て受け入れるなら 0.0.0.0 を指定
+bind 127.0.0.1
+
+# データベースの個数
+# データベースID は 0 から割り当てられ
+# (指定した値-1)の数のデータベースが利用可能となる
+databases 16
+
+# 接続パスワードを設定
+requirepass password
+
+# データ更新の際は常にディスクに保存する設定 (「yes」 で有効化)
+# 有効化するとデータは永続化されるがパフォーマンスは低下する
+appendonly no
+
+# 539行目：appendonly を有効化した場合の書き込みのタイミング
+# always=常に, everysec=毎秒毎, no=fsyncしない(OSに任せる)
+# appendfsync always
+appendfsync everysec
+# appendfsync no
+```
+
+起動
+
+```
+$ sudo systemctl restart redis
+```
+
 
 
 # tftpサーバ
@@ -447,6 +500,39 @@ xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew update
+```
+
+# mkisofsのためにcdrtoolsをインストールする
+
+mkisofsはcdrtoolsの中に含まれている。
+これは`/usr/local/sbin`にリンクを張ろうとするので、予め作成して、グループadminに書き込み権限を与えておく。
+
+```
+sudo mkdir /usr/local/sbin
+sudo chgrp admin /usr/local/sbin
+sudo chmod g+w /usr/local/sbin
+```
+
+ついでに/etc/pathsに`/usr/local/sbin`を加えておく。
+
+```
+$ cat /etc/paths
+/usr/local/bin
+/usr/local/sbin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+```
+
+cdrtoolsをインストールする。
+
+```
+$ brew install cdrtools
+==> Downloading https://homebrew.bintray.com/bottles/cdrtools-3.01_1.high_sierra.bottle.1.tar.gz
+Already downloaded: /Users/iida/Library/Caches/Homebrew/cdrtools-3.01_1.high_sierra.bottle.1.tar.gz
+==> Pouring cdrtools-3.01_1.high_sierra.bottle.1.tar.gz
+🍺  /usr/local/Cellar/cdrtools/3.01_1: 208 files, 4.7MB
 ```
 
 # bash-completionのインストール
