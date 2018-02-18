@@ -28,8 +28,9 @@ export PATH=$PYENV_ROOT/bin:$PATH
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 eval "$(pyenv init -)"
 
-# 2.7.14と3.6.3がインストールされている
-pyenv global 3.6.3
+# pyenv versionsでインストールされているバージョンを確認して指定する
+# pyenv global 2.7.14
+pyenv global 3.6.4
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -376,7 +377,23 @@ eval "$(pyenv init -)"
 
 # pyenv配下にpythonをインストールする
 
-`pyenv install --list` コマンドでインストールできるpythonのバージョンが表示される。
+
+このコマンドでインストールできるpythonのバージョンが表示される。
+
+```
+pyenv install --list
+```
+
+pyenvをインストールして時間が経過している場合は、最新のバージョンが表示されないことがある。
+その場合pyenv自身を新しくしたほうがいい。
+もともとgitで入れているので、pullすれば最新になる。
+
+```
+$ cd ~/.pyenv
+$ git pull
+```
+
+ここでは３系と２系、両方入れておく。
 
 ```
 $ pyenv install 3.6.3
@@ -384,6 +401,10 @@ $ pyenv install 2.7.14
 ```
 
 これにより~/.pyenv/versions/配下にPythonが配置される。
+
+失敗インストールに失敗したら、
+`xcode-select --install`
+をやってから、再度実行するとうまくいく。
 
 ```
 $ pyenv versions
@@ -397,11 +418,26 @@ $ pyenv versions
 $ pyenv rehash
 ```
 
+古い方のバージョンで
+
+```
+pip freeze > requirments.txt
+```
+
+しておいて、新しいバージョンで
+
+```
+pip install -r requirements.txt
+```
+
+するとよい。
+
 Pythonをアンインストールする場合
 
 ```
 $ pyenv uninstall 3.6.3
 ```
+
 
 
 # 使うPythonを変更する
