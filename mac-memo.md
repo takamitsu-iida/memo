@@ -343,6 +343,8 @@ emacs25は日本語(IME)の扱いがうまくいかないので、emacs24.3を�
 
 # Python3のインストール
 
+以下のpyenvを使ったほうがよい。
+
 1. homebrewをインストールする
 2. homebrewでpython3をインストールする
 
@@ -374,12 +376,20 @@ eval "$(pyenv init -)"
 
 # pyenv配下にpythonをインストールする
 
+`pyenv install --list` コマンドでインストールできるpythonのバージョンが表示される。
+
 ```
 $ pyenv install 3.6.3
 $ pyenv install 2.7.14
 ```
 
 これにより~/.pyenv/versions/配下にPythonが配置される。
+
+```
+$ pyenv versions
+```
+
+コマンドでインストール済みのバージョン一覧が表示される。
 
 インストール後はリフレッシュする。
 
