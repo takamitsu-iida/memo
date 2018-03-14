@@ -139,3 +139,10 @@
   (define-key-after menu-bar-file-menu [my-encoding-menu]
     (cons "File Encoding" my-encoding-menu) 'my-file-separator)
 ))
+
+
+; yaml-mode.el
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
