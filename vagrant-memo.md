@@ -131,8 +131,10 @@ sudo dnf -y install wget
 sudo dnf -y install traceroute
 sudo dnf -y install git
 sudo dnf -y install finger
-sudo dnf -y install emacs
 sudo dnf -y install ibus-mozc
+sudo dnf -y install emacs
+sudo dnf -y install emacs-mozc
+
 
 pip3 install --upgrade pip --proxy=http://user:pass@proxy.server:8080
 pip3 install requests --proxy=http://user:pass@proxy.server:8080
@@ -248,6 +250,10 @@ Vagrant.configure("2") do |config|
     end  #config.vm.define
 
   end  #each
+
+  #config.vm.provision 'shell', inline: <<-SCRIPT
+  #  sudo dnf -y update
+  #SCRIPT
 
 end
 
