@@ -94,6 +94,22 @@ git clean -f
 git pull
 ```
 
+
+## コミットメッセージをテンプレート化する
+
+~/.gitmessageファイルにテンプレート化する内容を記載し、以下で設定する。
+
+```
+git config --global commit.template ~/.gitmessage
+```
+
+もしくは、.gitconfigを直接書き換える。
+
+```
+[commit]
+  template = ~/.gitmessage
+```
+
 # まずい情報を含めてしまった場合
 
 緊急事態の場合はレポジトリを削除して、改めて作りなおせば簡単だが、過去のコミット履歴は全て消えてしまう。
@@ -175,3 +191,73 @@ gibo -lを実行するとgithubからリストを取ってくるのでそれを�
 ```
 gibo Windows Linux OSX Emacs vim python >> .gitignore
 ```
+
+
+# GitLab連携
+
+
+## pipelineをスキップしたい場合
+
+コミットメッセージに
+```
+[ci skip]
+```
+を含めると、そのときだけパイプラインは走らない。
+
+
+## GitLabとMattermostの連携
+
+Mattermost側の管理画面→統合機能で内向きのウェブフックを追加する。
+追加するとウェブフックのURLが作られるので、それをメモしておく。
+
+GitLabのプロジェクトの設定のIntegrationから
+Mattermost notificationを選択すると設定画面がでる。
+そこに先に作成したウェブフックのURLを設定する
+
+デフォルトでは、パイプラインは失敗したときしか通知しないので、必要に応じて外しておく。
+
+
+## GitLab Runnerとの連携
+
+gitlab-runner
+
+https://docs.gitlab.com/runner/install/linux-repository.html
+
+
+１．レポジトリを追加する
+
+社内のプロキシを利用する関係でrootにならないと作業できない場合がある。
+
+```
+sudo -
+```
+
+RHEL/CentOS/Fedoraの場合はこう。
+
+```
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | bash
+```
+
+２．インストールする
+
+```
+sudo dnf install gitlab-runner
+```
+
+３．gitlabのプロジェクトのトークンを採取する
+
+参考
+
+http://nyameji.hatenablog.com/entry/2018/02/18/181445
+
+採取したトークンをメモする。トークンはこんな文字列→`fpdihywnjY36s9Y38YEe`
+
+
+４．登録する
+
+```
+sudo gitlab-runner register
+```
+
+GitLabのURLやトークンを聞かれるので入力する。
+登録するとGitLabの管理画面でも見れるようになり、設定もWeb画面で変えられるようになる。
