@@ -135,14 +135,15 @@ Visual Studio Codeの設定メモ。
   },
 
   // python
-  "python.pythonPath": "${env:PYENV_ROOT}/shims/python",  // macの場合
+  "python.pythonPath": "${env:PYENV_ROOT}/shims/python",
   "python.linting.pylintEnabled": true,
+  "python.linting.pylintPath": "${env:PYENV_ROOT}/shims/python",
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "yapf",
-  "python.formatting.yapfPath": "yapf",
+  "python.formatting.yapfPath": "${env:PYENV_ROOT}/shims/yapf",
   "python.formatting.yapfArgs": [
       "--style={based_on_style: chromium, indent_width: 2, continuation_indent_width: 4, column_limit: 120}"
-  ]
+  ],
 
   // typescript
   "typescript.check.tscVersion": false
@@ -152,3 +153,5 @@ Visual Studio Codeの設定メモ。
 - 2017/06/11 -- バージョンアップで追加されたminimap機能が邪魔なのでfalseにするよう変更。
 
 - 2018/02/24 -- VSCodeが参照するpythonのパスを明示的に設定。
+
+- 2018/07/01 -- 1行目を#!/usr/bin/pythonで始めるとそれがVSCodeで利用されてしまうので、明示的にパスを追加
