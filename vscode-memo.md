@@ -97,6 +97,9 @@ Visual Studio Codeの設定メモ。
   // Controls whether the editor should render indent guides
   "editor.renderIndentGuides": true,
 
+  // エディターで制御文字を表示する必要があるかどうかを制御します
+  "editor.renderControlCharacters": true,
+
   // 有効にすると、ファイルの保存時に末尾の空白をトリミングします。
   "files.trimTrailingWhitespace": true,
 
@@ -137,7 +140,7 @@ Visual Studio Codeの設定メモ。
   // python
   "python.pythonPath": "${env:PYENV_ROOT}/shims/python",
   "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": "${env:PYENV_ROOT}/shims/python",
+  "python.linting.pylintPath": "${env:PYENV_ROOT}/shims/pylint",
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "yapf",
   "python.formatting.yapfPath": "${env:PYENV_ROOT}/shims/yapf",

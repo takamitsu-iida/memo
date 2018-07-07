@@ -14,7 +14,7 @@
 1. ホストマシン(Linux)の/var/tmpに置く
 1. ホストマシン(Linux)のGUIを開く
 1. VirtualBoxを起動する
-1. 仮想マシンを新規で作成してFedora26をインストールする
+1. 仮想マシンを新規で作成してFedora26をインストールする
     - インストール中にrootのパスワードをvagrantに設定する
     - インストール中にadminアカウントを作成する
 1. インストールしたら仮想マシンをshutdown
@@ -59,7 +59,7 @@ export https_proxy="http://name:pass@proxy.server:8080"
 export no_proxy="127.0.0.1,localhost,10.*,172.16.*,192.168.*,.local"
 ```
 
-dnfのプロキシ設定は個別に設定しておく。
+dnfのプロキシ設定は個別に設定しておく。
 
 ```
 sudo vi /etc/dnf/dnf.conf
@@ -75,7 +75,7 @@ proxy_password = pass
 
 ## udevの設定をする
 
-これはよくわからんが、参考リンクに書いてあるのでその通りにする。
+これはよくわからんが、参考リンクに書いてあるのでその通りにする。
 
 ```
 rm -f /etc/udev/rules.d/70-persistent-net.rules
@@ -133,7 +133,7 @@ sudo dnf -y install git
 sudo dnf -y install finger
 sudo dnf -y install ibus-mozc
 sudo dnf -y install emacs
-sudo dnf -y install emacs-mozc
+sudo dnf -y install emacs-mozc
 
 
 pip3 install --upgrade pip --proxy=http://user:pass@proxy.server:8080
@@ -172,7 +172,7 @@ vagrant package --base fedora26
 実行場所はどこでもよいが、実行した場所にpackage.boxという大きなファイルができるので、それを好きな名前に変更する。
 
 これがボックスファイルになるので、
-あとは`vagrant box add`でvagrantに追加して利用する。
+あとは`vagrant box add`でvagrantに追加して利用する。
 
 この仮想マシンをさらにカスタマイズしてパッケージ化しくと便利。
 
