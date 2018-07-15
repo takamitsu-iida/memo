@@ -68,7 +68,6 @@ Visual Studio Codeの設定メモ。
 ファイル→基本設定→設定
 
 ```js
-
 // 既定の設定を上書きするには、このファイル内に設定を挿入します
 {
   // HTTP 構成
@@ -151,6 +150,18 @@ Visual Studio Codeの設定メモ。
   // typescript
   "typescript.check.tscVersion": false
 }
+
+  // markdownlint
+  "markdownlint.config": {
+    "default": true,
+    "no-hard-tabs": false,
+    "MD003": false,
+    "MD007": { "indent": 2 },
+    "MD013": false,
+    "MD025": false,
+    "MD033": false
+  }
+
 ```
 
 - 2017/06/11 -- バージョンアップで追加されたminimap機能が邪魔なのでfalseにするよう変更。
@@ -158,3 +169,5 @@ Visual Studio Codeの設定メモ。
 - 2018/02/24 -- VSCodeが参照するpythonのパスを明示的に設定。
 
 - 2018/07/01 -- 1行目を#!/usr/bin/pythonで始めるとそれがVSCodeで利用されてしまうので、明示的にパスを追加
+
+- 2018/07/15 -- markdownlint用の設定を追加
