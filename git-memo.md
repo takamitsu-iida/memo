@@ -30,6 +30,15 @@ git config --global core.quotepath false
 git config --global core.autoCRLF false
 ```
 
+## プロキシ設定
+
+```
+git config --global http.https://github.com/.proxy http://username:password@servername:8080
+git config --global https.https://github.com/.proxy http://username:password@servername:8080
+
+git config --global url."https://".insteadOf git://
+```
+
 ## リポジトリの新規作成
 
 ```
