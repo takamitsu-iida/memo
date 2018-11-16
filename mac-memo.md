@@ -3,10 +3,11 @@
 
 .bash_profileはログイン時に実行され主に環境変数を設定する。
 
-.bashrcはbash起動ごとに実行される。
+.bashrcはbashを起動するたびに実行される。
 主にシェル変数(exportしないもの)やエイリアスを設定する。
 
-.bashrcは作っても読み込まれないので、先に.bash_profileを作る。
+.bashrcは作っても自動では読み込まれないので、先に.bash_profileを作る。
+
 
 ```
 if [ -f ~/.bashrc ]; then
@@ -16,9 +17,12 @@ fi
 
 # .bashrc
 
-2017年12月時点はこれ。
+2018年9月時点はこれ。
 
 ```
+# alias
+alias ls='ls -F'
+
 # $HOME/binを最後に通す
 export PATH=$PATH:$HOME/bin
 
@@ -34,37 +38,77 @@ pyenv global 3.6.4
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# ansible
+export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.158.20"'
 ```
 
 # バックスラッシュの入力
 
 まさか＼と￥が違う扱いとは。
 
-macのデフォルトの設定では￥が入力されますが、Pythonで￥nをprintしても改行しません。
-＼nを入力しないといけないのですが、
+macのデフォルトの設定では￥が入力されるが、Pythonで￥nをprintしても改行しない。
+￥nではなく＼nで書かなければならない
 
 - optionキーを押しながら￥キーを押す
 
-というキーストロークなので面倒です。
+というキーストロークで入力可能。
 
-IMEごとに￥と＼のどっちを使うか設定できます。
-Google日本語入力の場合、
+IMEごとに￥と＼のどっちを使うか設定可能。
+Google日本語入力の場合は以下の通り。
 
 1. 画面右上に、青字で白文字の「A」が出るように選択
 1. 「環境設定...」を選択
 1. 「一般」の「¥キーで入力する文字」を「\（バックスラッシュ）」に変更
 
-の設定で変更できます。
 
 # キーボート設定
 
-他のアプリからターミナルに移るたびに日本語入力状態を確認しないといけないのは面倒なので設定を変えること。
+他のアプリからターミナルに移るたびに日本語入力状態を確認するのは面倒なので必ず設定を変えること。
 
 システム環境設定　→　キーボード　→　入力ソース
 
 - [x] 書類ごとに入力ソースを自動的に切り替える
 
 デフォルトはチェックがついてないので、つけること。
+
+
+# sshの設定
+
+古いデバイスとは暗号化のパラメータが一致せずSSH接続できないので設定で対応する。
+
+~/.ssh/config
+
+```ini
+Host *
+  KexAlgorithms +diffie-hellman-group1-sha1
+  Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
+
+Host pg04
+  User admin
+
+Host 172.20.0.101
+  ProxyCommand ssh -W %h:%p 10.35.158.20
+  User ansible
+
+Host 172.20.0.21
+  ProxyCommand ssh -W %h:%p 10.35.158.20
+  User cisco
+
+Host 172.20.0.22
+  ProxyCommand ssh -W %h:%p 10.35.158.20
+  User cisco
+
+Host 172.20.0.23
+  ProxyCommand ssh -W %h:%p 10.35.158.20
+  User cisco
+
+Host 172.20.0.24
+  ProxyCommand ssh -W %h:%p 10.35.158.20
+  User cisco
+```
+
+
 
 # vagrant
 
@@ -708,6 +752,8 @@ Jing http://www.jingproject.com/
 
 
 # キーバインディングの変更
+
+慣れればcommandキーも悪くないので、今は設定していない。
 
 ^はコントロールを意味する。
 

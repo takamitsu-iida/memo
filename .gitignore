@@ -1,6 +1,9 @@
 # フォルダ単位で無視
 data/
 
+# vscodeのワークスペース
+*.code-workspace
+
 #
 # 以下、giboによる自動生成
 #

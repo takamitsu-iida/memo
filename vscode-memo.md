@@ -5,28 +5,35 @@
 
 Visual Studio Codeの設定メモ。
 
-
 ## 拡張機能（各言語共通）
+
+使わなくなったもの
 
 - Auto-Open Markdown preview
 - beautify
-- final-newline
 - Toggle Proxy
+
+使っているもの
+
+- Japanese Language Pack
+- Remove backspace control character
+- Prettier - Code Formatter
+- final-newline
+- Excel Viewer
 
 ## 拡張機能（JavaScript）
 
 - ESLint
 
-
 ## 拡張機能（Python）
 
 - Python
-
+- Jinja
+- autoDocstring
 
 ## 拡張機能（YAML）
 
 - YAML
-
 
 ## 拡張機能（なくてもいいかも）
 

@@ -30,6 +30,13 @@ git config --global core.quotepath false
 git config --global core.autoCRLF false
 ```
 
+## ファイルのモード変更を無視する
+
+```
+git config --global core.fileMode false
+```
+
+
 ## プロキシ設定
 
 ```
