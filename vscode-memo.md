@@ -41,7 +41,6 @@ Visual Studio Codeの設定メモ。
 - Angular UI Bootstrap Snippets
 - Jasmine code snippets
 
-
 ## 頻繁に使うキー
 
 - ctrl-shift-p コマンド入力

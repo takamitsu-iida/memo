@@ -380,34 +380,6 @@ sudo launchctl load -w /System/Library/LaunchDaemons/tftp.plist
 sudo launchctl unload -w /System/Library/LaunchDaemons/tftp.plist
 ```
 
-# インベントリ情報
-
-### 2017年購入品
-
-```
-ハードウェアの概要:
-MacBook Pro (13-inch, 2017, 2 TBT3)
-シリアル番号：  C02VC2KCHV2D
-購入日：2017/09/28
-購入日：確認済み
-お客様の製品は Apple 製品限定保証のハードウェア修理サービス保証の対象です。
-有効期限 (推定)：2018年10月21日
-
-  機種名: MacBook Pro
-  機種ID: MacBookPro14,1
-  プロセッサ名: Intel Core i5
-  プロセッサ速度: 2.3 GHz
-  プロセッサの個数: 1
-  コアの総数: 2
-  二次キャッシュ（コア単位）: 256 KB
-  三次キャッシュ: 4 MB
-  メモリ: 8 GB
-  ブートROMのバージョン: MBP141.0160.B02
-  SMCバージョン（システム）: 2.43f6
-  シリアル番号（システム）: C02VC2KCHV2D
-  ハードウェアUUID: 96179E35-1645-596C-A1C9-BCC688A61B7D
-```
-
 
 # emacs
 
