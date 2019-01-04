@@ -168,12 +168,16 @@ Visual Studio Codeの設定メモ。
     "MD033": false
   }
 
+  // YAML
+  "[yaml]": {
+      "editor.tabSize": 2,
+      "editor.detectIndentation": false
+  }
+
 ```
 
 - 2017/06/11 -- バージョンアップで追加されたminimap機能が邪魔なのでfalseにするよう変更。
-
 - 2018/02/24 -- VSCodeが参照するpythonのパスを明示的に設定。
-
 - 2018/07/01 -- 1行目を#!/usr/bin/pythonで始めるとそれがVSCodeで利用されてしまうので、明示的にパスを追加
-
 - 2018/07/15 -- markdownlint用の設定を追加
+- 2019/01/04 -- yaml用の設定を追加

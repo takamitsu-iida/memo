@@ -2,12 +2,10 @@
 
 [//]:# (javascript / js / typescript / ユニットテスト / unit test / karma / protractor)
 
-
 [//]:# (@@@)
 # web color 色見本
 
 http://www.htmq.com/color/index.shtml
-
 
 [//]:# (@@@)
 # グラデーションの色
@@ -15,8 +13,6 @@ http://www.htmq.com/color/index.shtml
 ColorBrewer2
 
 http://colorbrewer2.org/#type=diverging&scheme=PRGn&n=9
-
-
 
 [//]:# (@@@ 2016.12.03)
 
@@ -26,13 +22,11 @@ http://colorbrewer2.org/#type=diverging&scheme=PRGn&n=9
 
 https://engineering.mongodb.com/post/digging-into-d3-internals-to-eliminate-jank/
 
-
 [//]:# (@@@ 2016.12.02)
 
 # d3.jsで一時的なログ表示
 
-
-```
+```js
 var div = d3.select('body').append('div').style('float', 'left');
 
 function log(message) {
@@ -50,17 +44,16 @@ function log(message) {
 .on('click', log('clicked'))
 ```
 
-
 [//]:# (@@@ 2016.11.03)
 # gruntでjsファイルを連結
 
 ローカルにインストールするので、プロジェクトの位置まで移動する
 
-```
+```bash
 cd ディレクトリ
 ```
 
-```
+```bash
 npm init
 ```
 
@@ -68,14 +61,12 @@ npm init
 package.json
 が作られているのを確認する。
 
-
-```
+```bash
 npm install grunt-contrib-concat -save-dev
 npm install grunt-contrib-uglify -save-dev
 ```
 
 設定ファイル```gruntfile.js```を作る。
-
 
 ```js
 module.exports = function (grunt) {
@@ -107,12 +98,10 @@ module.exports = function (grunt) {
 };
 ```
 
-
 [//]:# (@@@ 2016.09.21)
 # JSONデータをtextareaにバインディングする例
 
-http://codepen.io/maxbates/pen/AfEHz
-
+<http://codepen.io/maxbates/pen/AfEHz>
 
 [//]:# (@@@ 2016.09.19)
 # angular directiveでエレメントのサイズを得る
@@ -126,7 +115,6 @@ http://codepen.io/maxbates/pen/AfEHz
         var width = element.prop('offsetWidth');
         var height = element.prop('offsetHeight');
 ```
-
 
 [//]:# (@@@ 2016.09.14)
 # angularでgetter setter を使う
@@ -158,10 +146,8 @@ ctrl.settingParam = {
 };
 ```
 
-
 [//]:# (@@@ 2016.09.11)
 # 画面の右側にmd-contentを付ける例
-
 
 ```html
       <!-- メインコンテンツ右側 -->
@@ -181,7 +167,6 @@ ctrl.settingParam = {
       <!-- メインコンテンツ右側・おわり -->
 ```
 
-
 [//]:# (@@@)
 # AngularJS利用時に役立つChromeプラグイン
 
@@ -191,21 +176,22 @@ Chromeの拡張機能
 
 を使うと双方向バインディングしている数が分かる。
 
-
 [//]:# (@@@)
 # E2Eテスト
 
 Protractorを使う
 
 ## ホームページ
-http://www.protractortest.org/#/
+
+<http://www.protractortest.org/#/>
 
 ## 日本語チュートリアル
-http://qiita.com/weed/items/30098f7be2f753580f63
+
+<http://qiita.com/weed/items/30098f7be2f753580f63>
 
 ## インストール
 
-```
+```bash
 npm install -g protractor
 
 C:\HOME\iida\git\bottle_rest_practice_1\karma>protractor --version
@@ -217,13 +203,13 @@ Version 4.0.4
 コマンドプロンプトを2枚使う。
 ひとつ目のコマンドプロンプトにて、
 
-```
+```bash
 webdriver-manager update
 ```
 
 別のコマンドプロンプトから
 
-```
+```bash
 protractor conf.js
 ```
 
@@ -240,14 +226,14 @@ protractor conf.js
 
 ## Karmaクライアントをグローバルにインストール
 
-```
+```bash
 npm install -g karma-cli
 ```
 
 Karmaはアプリルートにインストールするのが推奨されているが、
 MACではグローバルにインストールしないと動かなかった。
 
-```
+```bash
 npm install -g jasmine-core
 npm install -g karma
 npm install -g karma-jasmine
@@ -274,7 +260,6 @@ karma.conf.jsが生成される
       'static/angular-1.5.8/angular-sanitize.min.js',
       'static/site/js/*.js',
 
-
     ],
 ```
 
@@ -284,14 +269,14 @@ spec/index_spec.jsファイルを作成する
 
 環境変数を設定する
 
-```
+```bash
 CHROME_BIN
 C:\Program Files\Google\Chrome\Application\chrome.exe
 ```
 
 index_spec.js
 
-```
+```js
 describe('テストの基本', function() {
   beforeEach(function() {
     // 初期化処理
@@ -332,16 +317,14 @@ describe('テストの基本', function() {
 
 expect(1 + 1).not.toEqual(2)
 
-
 実行はコマンドプロンプトから
 
-```
+```bash
 karma start
 ```
 
 終了は
 ctrl-c
-
 
 ## $httpBackendモック
 
@@ -349,13 +332,12 @@ ctrl-c
 
 - $httpBackend.expect('GET', 'url').respond(obj);  このリクエストが来ないとエラーになる
 
-
 [//]:# (@@@)
 # npmの基本
 
 ## グローバルにインストールされたパッケージを全て確認する
 
-```
+```bash
 npm ls -g
 npm la -g
 npm list -g
@@ -364,7 +346,7 @@ npm ll -g
 
 ## パッケージをプロジェクトからアンインストールする
 
-```
+```bash
 npm uninstall パッケージ
 npm r パッケージ
 npm remove パッケージ
@@ -375,7 +357,7 @@ npm unlink パッケージ
 
 ## パッケージの情報を見る
 
-```
+```bash
 npm info パッケージ名
 npm view パッケージ名
 npm show パッケージ名
@@ -383,7 +365,7 @@ npm show パッケージ名
 
 ## package.jsonを生成する
 
-```
+```bash
 npm init
 ```
 
@@ -392,13 +374,13 @@ npm init
 
 ## コンパイラのインストール
 
-```
+```bash
 npm -g install tsc
 ```
 
 ## 使い方
 
-```
+```bash
 tsc src/ts/app.ts --outDir dist/ts
 ```
 
@@ -406,7 +388,7 @@ tsc src/ts/app.ts --outDir dist/ts
 
 typescriptをコンパイルするならローカルにgulpをインストールする
 
-```
+```bash
 npm install gulp
 npm install gulp-typescript
 ```
@@ -429,13 +411,12 @@ gulp.task('compile:ts', function() {
 gulp.task('default', ['compile:ts']);
 ```
 
-
 [//]:# (@@@)
 # eslint
 
 ## インストール
 
-```
+```bash
 npm -g install eslint
 npm -g install eslint-config-google
 ```
@@ -472,11 +453,10 @@ module.exports = {
 };
 ```
 
-
 [//]:# (@@@)
 # angularでドラッグドロップする例
 
-http://marceljuenemann.github.io/angular-drag-and-drop-lists/demo/#
+<http://marceljuenemann.github.io/angular-drag-and-drop-lists/demo/#>
 
 [//]:# (@@@)
 # md-cardの中にチェックボックスを綺麗に並べる例
@@ -506,10 +486,8 @@ checkboxesクラスの中の子要素md-checkboxにだけ適用する
 }
 ```
 
-
 [//]:# (@@@)
 # md-listをvirtual-containerに入れてスクロールする
-
 
 ```html
       <md-virtual-repeat-container id="vertical-container" flex="100" style="border: solid 1px grey;">
@@ -536,7 +514,6 @@ checkboxesクラスの中の子要素md-checkboxにだけ適用する
       </div>
       -->
 ```
-
 
 [//]:# (@@@)
 # angular materialでの色指定
@@ -592,7 +569,6 @@ layout-align="space-between start"
 
 space-betweenとspace-aroundは、最初の最後の要素の前後にスペースを用意するかどうかの違い。
 
-
 ### layout-margin
 
 自分の周りにマージンができる。
@@ -646,7 +622,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
 <div flex flex-offset="5">
 ```
 
-
 [//]:# (@@@)
 # ヘッダ・コンテンツ・フッタの基本構成の例
 
@@ -672,7 +647,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
 </md-toolbar>
 ```
 
-
 [//]:# (@@@)
 # タブを使う例
 
@@ -697,7 +671,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
   </md-tabs>
 </md-content>
 ```
-
 
 [//]:# (@@@)
 # サイドバーの例
@@ -898,7 +871,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
   </md-content>
 ```
 
-
 [//]:# (@@@)
 # フォーム
 
@@ -935,7 +907,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
           <div ng-message="md-maxlength">This name is too long!</div>
         </div>
 ```
-
 
 ## ラジオボタン
 
@@ -1069,7 +1040,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
     }
 ```
 
-
 [//]:# (@@@)
 # メニュー md-menu
 
@@ -1098,7 +1068,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
 
   </md-menu>
 ```
-
 
 [//]:# (@@@)
 # ダイアログ
@@ -1182,7 +1151,6 @@ space-betweenとspace-aroundは、最初の最後の要素の前後にスペー�
   </md-list>
 ```
 
-
 [//]:# (@@@)
 # いつものフォント指定
 
@@ -1202,12 +1170,10 @@ body {
 }
 ```
 
-
 [//]:# (@@@)
 # オブジェクトのdiff
 
 jsfiddle.net/sbgoran/kySNu/
-
 
 [//]:# (@@@)
 # AngularJS
@@ -1216,20 +1182,19 @@ jsfiddle.net/sbgoran/kySNu/
 
 ここからzipを持っていく
 
-https://code.angularjs.org/1.5.8/
+<https://code.angularjs.org/1.5.8/>
 
 ## AngularJS HUB
 
-http://www.angularjshub.com/
+<http://www.angularjshub.com/>
 
 ## すぐできるAngularJS
 
-http://8th713.github.io/LearnAngularJS/#/
+<http://8th713.github.io/LearnAngularJS/#/>
 
 ## js Studio
 
-http://js.studio-kingdom.com/
-
+<http://js.studio-kingdom.com/>
 
 ## 非同期にデータを取りに行って、結果が帰ってきてから表示する方法
 
@@ -1261,7 +1226,6 @@ $http.get('data_endpoint').then(function () {
 <input type="text" name="userName" ng-model="user.name" ng-model-options="{ debounce: 300 }" /><br />
 ```
 
-
 [//]:# (@@@)
 # Bootstrap
 
@@ -1269,10 +1233,8 @@ $http.get('data_endpoint').then(function () {
 
 http://bootstrap3.cyberlab.info
 
-
 [//]:# (@@@)
 # angularでtable内のクリックイベントを制御する
-
 
 ```html
 <body ng-controller="MainCtrl">
@@ -1294,16 +1256,14 @@ http://bootstrap3.cyberlab.info
 </body>
 ```
 
-
 [//]:# (@@@)
 # NeXt UI Project
 
-https://github.com/opendaylight/next
+<https://github.com/opendaylight/next>
 
 Opendaylightの一部？
 
 CiscoとVerizonが使ってる。
-
 
 [//]:# (@@@)
 # JavaScriptで配列から特定の要素を削除する
@@ -1319,12 +1279,10 @@ splice()を使う
       });
 ```
 
-
 [//]:# (@@@)
 # ダイアログ表示
 
-http://hakuhin.jp/js/dialog.html
-
+<http://hakuhin.jp/js/dialog.html>
 
 [//]:# (@@@)
 # String.startsWith相当は何か
@@ -1335,11 +1293,10 @@ http://hakuhin.jp/js/dialog.html
 str.lastIndexOf('prefix', 0) === 0
 ```
 
-
 [//]:# (@@@)
 # アコーディオン
 
-http://sample.web-pc.net/accordion/
+<http://sample.web-pc.net/accordion/>
 
 <dl class="accordion">
 <dt>タイトル１</dt>
@@ -1368,37 +1325,32 @@ http://sample.web-pc.net/accordion/
 </dd>
 </dl>
 
-
 [//]:# (@@@)
 # CSSアニメーション
 
 アイコンに動きを付ける例
-http://tobiasahlin.com/spinkit/
+<http://tobiasahlin.com/spinkit/>
 
 動きの参考になる22サイト
-https://webkikaku.co.jp/blog/htmlcss/css3animation/
-
+<https://webkikaku.co.jp/blog/htmlcss/css3animation/>
 
 [//]:# (@@@)
 # bpmn
 
 ビジネス・プロセスを記述するための標準
 
-http://demo.bpmn.io/
-
+<http://demo.bpmn.io/>
 
 [//]:# (@@@)
 # SVGを描画する
 
 JointJS
-http://www.jointjs.com/demos/devs/
-
+<http://www.jointjs.com/demos/devs/>
 
 [//]:# (@@@)
 # SVGをjQueryで操作する際にハマったので、書き留めておく。
 
-http://5log.jp/blog/svg-jquery/
-
+<http://5log.jp/blog/svg-jquery/>
 
 [//]:# (@@@)
 # ドラッグドロップでソートする
@@ -1406,7 +1358,6 @@ http://5log.jp/blog/svg-jquery/
 HTML5 Sortable
 
 rubaxa.github.io/Sortable
-
 
 [//]:# (@@@)
 # jQueryの読み込み方
@@ -1428,7 +1379,6 @@ $(document).ready(function() {
 });
 ```
 
-
 ```html
 <script>
 jQuery(function($) {
@@ -1444,6 +1394,7 @@ jQuery(function($) {
 ```
 
 jQuery フェードイン・フェードアウト
+
 ```js
 var $img = $("img");
 $("#fadein").toggle(
@@ -1457,7 +1408,8 @@ $("#fadein").toggle(
 ```
 
 showとhide
-```
+
+```js
 var $img = $("img");
 $("#fadein").toggle(
  function() {
@@ -1470,7 +1422,8 @@ $("#fadein").toggle(
 ```
 
 アニメーション
-```
+
+```js
 var $img = $("img");
 $("#animate").toggle(
  function() {
@@ -1493,10 +1446,9 @@ $("#animate").toggle(
 
 falseを返却することで以下の効果を得られる。
 
-* リンクをたどったりテキストを選択したり、等をしないようにするにはevent.preventDefault()を呼ぶ
-* 親のDOM要素で同じイベントを発行しないようにするにはevent.stopPropagation()を呼ぶ
-* 次のハンドラを実行したくなければevent.preventImmediatePropagation()する
-
+- リンクをたどったりテキストを選択したり、等をしないようにするにはevent.preventDefault()を呼ぶ
+- 親のDOM要素で同じイベントを発行しないようにするにはevent.stopPropagation()を呼ぶ
+- 次のハンドラを実行したくなければevent.preventImmediatePropagation()する
 
 [//]:# (@@@)
 # CSSの基本
@@ -1536,7 +1488,6 @@ p.mago strong {
 
 magoというクラス名がついたp要素のなかにあるstrong要素に適用
 
-
 ## 子要素にのみ適用する場合
 
 ```css
@@ -1570,19 +1521,17 @@ h4 ~ p {
 
 h4要素の後ろにあるp要素
 
-
 [//]:# (@@@)
 # CSSレイアウトを学ぶ
 
 大変良い資料。
 
-http://ja.learnlayout.com/
-
+<http://ja.learnlayout.com/>
 
 [//]:# (@@@)
 # jquery ajaxの使い方
 
-https://medium.com/coding-design/writing-better-ajax-8ee4a7fb95f#.77qh5w2f4
+<https://medium.com/coding-design/writing-better-ajax-8ee4a7fb95f#.77qh5w2f4>
 
 .success()ではなく .done() を使う
 
@@ -1658,24 +1607,21 @@ a2.done(function(data) {
 [//]:# (@@@)
 # d3.js timeline
 
-https://github.com/alangrafu/timeknots
-
+<https://github.com/alangrafu/timeknots>
 
 [//]:# (@@@)
 # d3.jsで外部のSVGを取り込む方法
 
-http://gappyfacets.com/2014/11/07/d3-js-importing-svg-chart-element/
+<http://gappyfacets.com/2014/11/07/d3-js-importing-svg-chart-element/>
 
-http://jsfiddle.net/J8sp3/4/
-
+<http://jsfiddle.net/J8sp3/4/>
 
 [//]:# (@@@)
 # D3.js を使ってcsvからテーブルを出力する
 
-http://qiita.com/_shimizu/items/0bb1ed4199b500670e69
+<http://qiita.com/_shimizu/items/0bb1ed4199b500670e69>
 
-http://codepen.io/shimizu/pen/sdpLE
-
+<http://codepen.io/shimizu/pen/sdpLE>
 
 [//]:# (@@@)
 # WebデザイナーのためのjQuery入門
@@ -1683,18 +1629,14 @@ http://codepen.io/shimizu/pen/sdpLE
 良書
 
 サンプル
-http://gihyo.jp/book/sp/01/jqbook/
-
+<http://gihyo.jp/book/sp/01/jqbook/>
 
 [//]:# (@@@)
 # jQuery入門道場
 
 良書
 
-http://jquery-master.net
-
-kindle版をワード化した。
-
+<http://jquery-master.net>
 
 [//]:# (@@@)
 # はじめてのNode.js
@@ -1702,19 +1644,12 @@ kindle版をワード化した。
 良書
 
 サンプル
-http://sourceforge.jp/users/hylom/pf/
-
-
-[//]:# (@@@)
-# 開発環境のセットアップ
-
-vagrant
-
+<http://sourceforge.jp/users/hylom/pf/>
 
 [//]:# (@@@)
 # expressのインストール
 
-```
+```bash
 npm install -g express-generator
 npm install -g ejs
 
@@ -1729,23 +1664,21 @@ express -e test1
 
 Webアプリを置くディレクトリを作ってそこにexpressを配備する。
 
-```
+```bash
 npm install express
 ```
 
 nodemonを使うと再起動不要。
 
-
 [//]:# (@@@)
 # d3.js リユーサブル
 
-http://bl.ocks.org/n1n9-jp/6238c6e48bff9cd8da12
-
+<http://bl.ocks.org/n1n9-jp/6238c6e48bff9cd8da12>
 
 [//]:# (@@@)
 # d3.js , The Wealth & Health of Nations
 
-http://bost.ocks.org/mike/nations/
+<http://bost.ocks.org/mike/nations/>
 
 必読ソースコード
 
@@ -1800,37 +1733,34 @@ http://bost.ocks.org/mike/nations/
   }
 ```
 
-
 [//]:# (@@@)
 # d3.js ギャラリー
 
-http://christopheviau.com/d3list/gallery.html
-
+<http://christopheviau.com/d3list/gallery.html>
 
 [//]:# (@@@)
 # d3.js 必読
 
 マージンの指定方法
-http://bl.ocks.org/mbostock/3019563
+<http://bl.ocks.org/mbostock/3019563>
 
 最初に読むべき
 d3.js超初心者向け
-http://qiita.com/daxanya1/items/734e65a7ca58bbe2a98c
+<http://qiita.com/daxanya1/items/734e65a7ca58bbe2a98c>
 
 最初に読むべき
 チュートリアル
-http://dataisfun.org/category/d3-tutorial/d3-tutorial-elemental
+<http://dataisfun.org/category/d3-tutorial/d3-tutorial-elemental>
 
 クロージャー、メソッドチェーンはどうやって実現されているのか
-http://ja.d3js.info/blocks/mike/chart/
-
+<http://ja.d3js.info/blocks/mike/chart/>
 
 [//]:# (@@@)
 # d3.js 基本中の基本
 
-datumは要素の個々に対してデータを紐付ける
+datumは一つの要素に対してデータをまるごと紐付ける。
 
-dataは要素のグループに対して紐付ける
+dataはデータを展開して複数の要素を生成する。
 
 ```js
 # selection.data([values[, key]])
@@ -1846,17 +1776,15 @@ keyは再セレクションするときに重要。
 .data(data, function(d) { return d.name; })
 ```
 
-
 [//]:# (@@@)
 # d3.js , tide chart
 
-http://phangantide.info/
-
+<http://phangantide.info/>
 
 [//]:# (@@@)
 # d3.js , How Obama Won Re-election
 
-http://www.nytimes.com/interactive/2012/11/07/us/politics/obamas-diverse-base-of-support.html?_r=0
+<http://www.nytimes.com/interactive/2012/11/07/us/politics/obamas-diverse-base-of-support.html?_r=0>
 
 ```js
 function run() {
@@ -1896,11 +1824,10 @@ function run() {
 }
 ```
 
-
 [//]:# (@@@)
 # d3.js, forceレイアウトでリンクをカーブさせる例
 
-http://bl.ocks.org/mbostock/1153292
+<http://bl.ocks.org/mbostock/1153292>
 
 ```js
 // Use elliptical arc path segments to doubly-encode directionality.
@@ -1922,11 +1849,10 @@ function transform(d) {
 }
 ```
 
-
 [//]:# (@@@)
 # 画面にログ出力
 
-http://handsontable.com/demo/callbacks.html
+<http://handsontable.com/demo/callbacks.html>
 
 ```html
 <h3>Events log
@@ -2026,7 +1952,6 @@ node.jsを使うなら必要
 
   予約後をプロパティとして使う場合にも必要(angularが使う)
 
-
 [//]:# (@@@)
 # GeoIP
 
@@ -2036,7 +1961,7 @@ node.jsを使うなら必要
 
 都市番号と座標を示したもの
 
-```
+```csv
 locId ,country,region,city      ,postalCode,latitude,longitude,metroCode,areaCode
 114827,"JP"   ,"10"  ,"Tokyo"   ,""        ,35.6850 ,139.7514 ,         ,
 21250 ,"JP"   ,"19"  ,"Yokohama",""        ,35.4478 ,139.6425 ,         ,
@@ -2046,7 +1971,7 @@ regionってなんだろ？
 
 ## GeoLiteCity-Blocks.csv
 
-```
+```csv
 startIpNum  ,endIpNum    ,locId
 "16777216"  ,"16777471"  ,"17"
 "1698000896","1698004991","21250"
@@ -2054,7 +1979,6 @@ startIpNum  ,endIpNum    ,locId
 ```
 
 どうやらIPアドレスは32ビットで書かれている模様。
-
 
 [//]:# (@@@)
 # IPアドレスをJavaScriptで扱う
@@ -2099,21 +2023,19 @@ inSubNet('192.31.252.63', '192.30.252.0/22') => false
 [//]:# (@@@)
 # d3.jsでグリッド表示
 
-http://bl.ocks.org/bunkat/2605010
-
+<http://bl.ocks.org/bunkat/2605010>
 
 [//]:# (@@@)
 # d3.jsでヒートマップ
 
-http://bl.ocks.org/tjdecke/5558084
-
+<http://bl.ocks.org/tjdecke/5558084>
 
 [//]:# (@@@)
 # d3.jsでRadio Button
 
 ラジオボタンをd3.jsで生成する
 
-http://jsfiddle.net/jhaRoshan/54559btv/
+<http://jsfiddle.net/jhaRoshan/54559btv/>
 
 ```js
 var shapeData = ["Triangle", "Circle", "Square", "Rectangle"],
@@ -2137,23 +2059,20 @@ labels = form.selectAll("label")
     .property("checked", function(d, i) {return i===j;});
 ```
 
-
 [//]:# (@@@)
 # d3.js , New York Times
 
-http://query.nytimes.com/search/sitesearch/#/MIKE+BOSTOCK/
-
+<http://query.nytimes.com/search/sitesearch/#/MIKE+BOSTOCK/>
 
 [//]:# (@@@)
 # d3.js , Visual Trace Route Tool
 
-http://www.monitis.com/traceroute/
-
+<http://www.monitis.com/traceroute/>
 
 [//]:# (@@@)
 # d3.js , 地図の２地点間に線をひく
 
-http://shimz.me/blog/d3-js/2913
+<http://shimz.me/blog/d3-js/2913>
 
 パスで描画するので一筆書きになる。
 
@@ -2195,17 +2114,16 @@ http://shimz.me/blog/d3-js/2913
 		});
 ```
 
-
 [//]:# (@@@)
 # d3.js , スライダー
 
-http://sujeetsr.github.io/d3.slider/
+<http://sujeetsr.github.io/d3.slider/>
 
 
 [//]:# (@@@)
 # d3.js , マウスの動きに追従して点が動く例
 
-http://bl.ocks.org/duopixel/3824661
+<http://bl.ocks.org/duopixel/3824661>
 
 ```js
 var svg = d3.select("#line").append("svg")
@@ -2237,14 +2155,12 @@ svg.on("mousemove", function() {
     });
 ```
 
-
 [//]:# (@@@)
 # d3.js , clusterレイアウトを使った興味深い例
 
-http://jsfiddle.net/doraeimo/JEcdS/
+<http://jsfiddle.net/doraeimo/JEcdS/>
 
 これをベースにしてshow cdpの表示結果を可視化
-
 
 [//]:# (@@@)
 # forceレイアウトで階層構造を作る方法
@@ -2256,13 +2172,12 @@ nodes.forEach(function( d ) {
 });
 ```
 
-
 [//]:# (@@@)
 # d3.js , Div-based Data Grid
 
 データグリッド
 
-http://bl.ocks.org/syntagmatic/3687826
+<http://bl.ocks.org/syntagmatic/3687826>
 
 ```js
  // create data table, row hover highlighting
@@ -2289,46 +2204,45 @@ http://bl.ocks.org/syntagmatic/3687826
   });
 ```
 
-
 [//]:# (@@@)
 # d3.js , forceでノードをダブルクリックすると固定する例
 
 Sticky Force Layout
 
-http://bl.ocks.org/mbostock/3750558
-
+<http://bl.ocks.org/mbostock/3750558>
 
 [//]:# (@@@)
 # topojson
 
-http://blog.goo.ne.jp/xmldtp/e/b482b576bf71425e6366df7756e23a31
+<http://blog.goo.ne.jp/xmldtp/e/b482b576bf71425e6366df7756e23a31>
 
-https://dl.dropboxusercontent.com/u/1662536/topojson/japan.topojson
+<https://dl.dropboxusercontent.com/u/1662536/topojson/japan.topojson>
 
-http://ja.d3js.node.ws/blocks/mike/map/
+<http://ja.d3js.node.ws/blocks/mike/map/>
 
 市町村単位の地図はここ。行政区域データ
-http://nlftp.mlit.go.jp/ksj/
+<http://nlftp.mlit.go.jp/ksj/>
 
 地図から東京都の離島を除かないといけないので、自分で地図を加工した方がいい。
 Natural Earthの地図は県名レベルしかはいっていないので、編集が困難。県単位で消えてしまう。
 地図は国土地理院のものがよい。
-http://www.gsi.go.jp/kankyochiri/gm_jpn.html
+<http://www.gsi.go.jp/kankyochiri/gm_jpn.html>
 
 県レベルだと国土交通省の地図も使える。行政区域を選ぶと、県ごとに指定して落とせる。
-http://nlftp.mlit.go.jp/ksj/
+<http://nlftp.mlit.go.jp/ksj/>
 
 地図の加工にはQGSIを使う。
-QGISアプリ http://www2.qgis.org/ja/site/
+QGISアプリ
+<http://www2.qgis.org/ja/site/>
 
 mapshaperでtopojsonを小さくすることもできる。
 
 シェープファイルからtopojsonに変換する方法はここに詳しい。
-http://visualizing.jp/shapefile-to-topojson/
+<http://visualizing.jp/shapefile-to-topojson/>
 
 topojsonに変換する際には必要な情報を追加しておかないといけない。
 
-```
+```bash
 ogr2ogr -f GeoJSON -where 'geonunit = "Japan"' japan.geojson ne_10m_admin_1_states_provinces.shp
 
 C:\TMP\japan>topojson -p name -p name_local -p latitude -p longitude -o japan.topojson japan.geojson
@@ -2338,7 +2252,7 @@ C:\HOME\iida\javascript\js\data>topojson -p name -p latitude -p longitude -o abu
 
 nameやname_local等は d.properties.name で取得可能
 
-```
+```js
 Object {name: "Okinawa", name_local: "沖縄県", latitude: 24.3349, longitude: 123.802}
 ```
 
@@ -2352,26 +2266,23 @@ topojsonにはバージョンがv0とv1があり、使い方が全然違う。v0
 
  ツールチップの例 http://bl.ocks.org/rveciana/5181105
 
-
 KMLをGeoJSONに変換するにはMapboxのホームページか、コマンドラインで実行する
 
-```
+```bash
 mapbox.github.io/togeojson
 togeojson file.kml > file.geojson
 ```
 
 その後、topojsonに変換する
 
-```
+```bash
 topojson -o file.topojson file.geojson
 ```
-
 
 [//]:# (@@@)
 # jquery , API日本語リファレンス
 
-http://stacktrace.jp/jquery/api/
-
+<http://stacktrace.jp/jquery/api/>
 
 [//]:# (@@@)
 # jQuery
@@ -2408,7 +2319,6 @@ http://stacktrace.jp/jquery/api/
 - $('#select > option').remove(); //全て取り除く
 - $('#select > option:selected').remove(); //選択されたものを取り除くとき
 
-
 ## 複数条件の指定方法
 
 - $('.class1') CLASS名 class1 の要素を選択
@@ -2443,32 +2353,32 @@ http://stacktrace.jp/jquery/api/
 
 - $('li:not(".class6")') liタグでCLASS名 class6 が指定されていない要素を選択
 
-```
+```js
 $("h1").next().find("li").eq(1)
   .next() 次の要素を選択
   .find("li") liをすべて見つける
   .eq(1) 0番目、1番目
 ```
 
- 指定のhtmlで囲む
+指定のhtmlで囲む
 
-```
+```js
 .wrap("<p></p>")
 ```
 
 子要素を削除して空にする
 
-```
+```js
 .empty()
 ```
 
 要素のコピーを生成
 
-```
+```js
 .clone()
 ```
 
-```
+```js
 $("div").click(function() {
   // クリック時に実行されるコード
   $(this).css("color", "red");
@@ -2480,14 +2390,14 @@ $("div").click(function() {
 .resize() ウィンドウのりサイズ時
 ```
 
-```
+```js
 $("div").hover(
   function() { 要素に乗ったとき},
   function() { 要素から外れた時}
 );
 ```
 
-```
+```js
 $("div").toggle(
   function() { 一回目のクリック },
   function() { 二回目のクリックで一回目に戻る }
@@ -2497,27 +2407,29 @@ $("div").toggle(
 .attr()ではなく、.prop()を使った方がよい。
 
 ダメな例
-```
+```js
 $('#chk1').attr("checked", true);
 ```
 
 良い例
-```
+
+```js
 $('#chk1').prop("checked", true);
 var isChked = $$('#chk1').prop("checked");
 var isChked = $$('#chk1').is(":checked");
 ```
 
 デフォルトの値をセットする
-```
+
+```js
 $('#chk1').prop("defaultChecked", true);
 ```
 
 フォームの値を取り出すときは.val()を使う方がよい
-```
+
+```js
 $("#myselect").val();
 ```
-
 
 [//]:# (@@@)
 # JavaScript 即時関数の書き方
@@ -2525,14 +2437,14 @@ $("#myselect").val();
 変数に()をつけると関数として実行される。
 
 無名関数の定義はこう。
+
 ```js
 function ( ) {
 
 };
 ```
 
-これを即時実行させたい場合は、うしろに()を付けてあげれば実行されそうだが、
-実際には構文エラーになる。
+これを即時実行させたい場合は、うしろに()を付けてあげれば実行されそうだが、実際には構文エラーになる。
 
 ```js
 function ( ) {
@@ -2541,6 +2453,7 @@ function ( ) {
 ```
 
 関数部分を()でくくってあげると即時実行される。
+
 ```js
 (function ( ) {
 
@@ -2548,26 +2461,27 @@ function ( ) {
 ```
 
 ただし上記だとjslintが警告を出すので、関数部分ではなく、全体を( )でくくってあげる方がよい。
+
 ```js
 (function ( ) {
 
 }( ));
 ```
 
-
 [//]:# (@@@)
 # node.js
 
 ## 環境変数の設定
 
-* PATH C:\nodejs
-* NODE_HOME C:\nodejs
-* NODE_PATH C:\nodejs\node_modules
+- PATH C:\nodejs
+- NODE_HOME C:\nodejs
+- NODE_PATH C:\nodejs\node_modules
 
 ## 動作設定
 
 コマンドプロンプトを管理者権限で実行する。
-```
+
+```bash
 npm config edit
 ```
 
@@ -2576,13 +2490,12 @@ npm config edit
 - proxy=http://ユーザ名:パスワード@プロキシサーバ:8080
 - https-proxy=http://ユーザ名:パスワード@プロキシサーバ:8080
 
-
 [//]:# (@@@)
 # 再帰的にディレクトリをたどってくれるモジュール
 
 walkをインストールする。
 
-```
+```bash
 npm install walk
 ```
 
@@ -2604,7 +2517,6 @@ walker.on('end', function() {
 });
 ```
 
-
 [//]:# (@@@)
 # 正規表現
 
@@ -2616,7 +2528,6 @@ var bar = foo.match(/^\D+(\d+)\D+(\d+)\D+$/);
 - bar[0]はマッチしたもの全体
 - bar[1]は()でグループ化した最初
 - bar[2]は()でグループ化した２番目
-
 
 [//]:# (@@@)
 # インデックスを付けて検索を容易にする
@@ -2636,7 +2547,6 @@ json.forEach(function(x) {
 
 countryName = dict[countryCode];
 ```
-
 
 [//]:# (@@@)
 # Bracketsの拡張機能
@@ -2661,7 +2571,6 @@ countryName = dict[countryCode];
 - Tabs - Custom Working
 - YAML Linter
 
-
 [//]:# (@@@)
 # doLater.js
 
@@ -2680,11 +2589,10 @@ countryName = dict[countryCode];
  */
 ```
 
-
 [//]:# (@@@)
 # async.js
 
-```
+```js
 series          関数配列で定義された関数の順番通りにそれらが実行される。
 
 parallel        関数配列で定義された関数を並列に実行する。
@@ -2726,7 +2634,6 @@ times           第一引数で指定した回数、第二引数の関数を実�
 timesSeries     機能的にはtimesと同じだが、順次実行が保証される。
 ```
 
-
 [//]:# (@@@)
 # node.jsを使っているときにsleepするには
 
@@ -2760,7 +2667,6 @@ async.forever(function(callback) {
     console.log(err);
 });
 ```
-
 
 [//]:# (@@@)
 # 大量の配列データをゆっくり処理する
@@ -2845,7 +2751,6 @@ function runAcyncArray( params, onProcess, onFinish ) {
 }
 ```
 
-
 [//]:# (@@@)
 # JavaScriptでオブジェクトをJSON化する
 
@@ -2863,12 +2768,9 @@ function runAcyncArray( params, onProcess, onFinish ) {
   };
 ```
 
-
 [//]:# (@@@)
 # faviconの作り方
 
 好きな画像をここにアップロードして作るのが楽
 
-http://realfavicongenerator.net/
-
-
+<http://realfavicongenerator.net/>
