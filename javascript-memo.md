@@ -5,14 +5,14 @@
 [//]:# (@@@)
 # web color 色見本
 
-http://www.htmq.com/color/index.shtml
+<http://www.htmq.com/color/index.shtml>
 
 [//]:# (@@@)
 # グラデーションの色
 
 ColorBrewer2
 
-http://colorbrewer2.org/#type=diverging&scheme=PRGn&n=9
+<http://colorbrewer2.org/#type=diverging&scheme=PRGn&n=9>
 
 [//]:# (@@@ 2016.12.03)
 
@@ -20,7 +20,7 @@ http://colorbrewer2.org/#type=diverging&scheme=PRGn&n=9
 
 データ配列を分割して、ちょっとずつバッチ処理することで、ブラウザが固まることを阻止する。
 
-https://engineering.mongodb.com/post/digging-into-d3-internals-to-eliminate-jank/
+<https://engineering.mongodb.com/post/digging-into-d3-internals-to-eliminate-jank/>
 
 [//]:# (@@@ 2016.12.02)
 
@@ -1231,7 +1231,7 @@ $http.get('data_endpoint').then(function () {
 
 ## Bootstrap3日本語リファレンス
 
-http://bootstrap3.cyberlab.info
+<http://bootstrap3.cyberlab.info>
 
 [//]:# (@@@)
 # angularでtable内のクリックイベントを制御する
@@ -2119,7 +2119,6 @@ labels = form.selectAll("label")
 
 <http://sujeetsr.github.io/d3.slider/>
 
-
 [//]:# (@@@)
 # d3.js , マウスの動きに追従して点が動く例
 
@@ -2260,11 +2259,11 @@ Object {name: "Okinawa", name_local: "沖縄県", latitude: 24.3349, longitude: 
 
 topojsonにはバージョンがv0とv1があり、使い方が全然違う。v0のサンプルは参考にならない。
 
- ズームの例 http://bl.ocks.org/mbostock/2374239
+ ズームの例 <http://bl.ocks.org/mbostock/2374239>
 
- 点を打つ例 http://bl.ocks.org/mbostock/4342045
+ 点を打つ例 <http://bl.ocks.org/mbostock/4342045>
 
- ツールチップの例 http://bl.ocks.org/rveciana/5181105
+ ツールチップの例 <http://bl.ocks.org/rveciana/5181105>
 
 KMLをGeoJSONに変換するにはMapboxのホームページか、コマンドラインで実行する
 
@@ -2407,6 +2406,7 @@ $("div").toggle(
 .attr()ではなく、.prop()を使った方がよい。
 
 ダメな例
+
 ```js
 $('#chk1').attr("checked", true);
 ```
