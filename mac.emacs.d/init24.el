@@ -3,43 +3,43 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
 
-;; å¤ã„è¨­å®š
-;; ã“ã®è¨­å®šã¯å‹•ã‹ãªã„
+;; ¸Å¤¤ÀßÄê
+;; ¤³¤ÎÀßÄê¤ÏÆ°¤«¤Ê¤¤
 ;; http://macemacsjp.sourceforge.jp/matsuan/FontSettingJp.html
 ;(if (eq window-system 'mac) (require 'carbon-font))
 ; (if window-system (progn
 ; (fixed-width-set-fontset "hirakaku_w3" 12)))
-; ä»–ã«ã“ã‚“ãªãƒ•ã‚©ãƒ³ãƒˆãŒä½¿ãˆã‚‹ 
+; Â¾¤Ë¤³¤ó¤Ê¥Õ¥©¥ó¥È¤¬»È¤¨¤ë 
 ; "hiramaru" "hirakaku_w3" "hirakaku_w6" "hirakaku_w8" "hiramin_w3" "hiramin_w6" "osaka"
 ; 7, 8, 9, 10, 12, 14, 16, 18, 20, 24
 
-;; 2017/10 Emacs25ã¯æ—¥æœ¬èªå…¥åŠ›ã«ä¸å‚™ãŒã‚ã£ã¦ä½¿ãˆãªã„
-;; railwaycatç‰ˆã®emacsã¯ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã§ã®IMEå‹•ä½œãŒã§ããªã„
+;; 2017/10 Emacs25¤ÏÆüËÜ¸ìÆşÎÏ¤ËÉÔÈ÷¤¬¤¢¤Ã¤Æ»È¤¨¤Ê¤¤
+;; railwaycatÈÇ¤Îemacs¤Ï¥¤¥ó¥é¥¤¥ó¤Ç¤ÎIMEÆ°ºî¤¬¤Ç¤­¤Ê¤¤
 ;; https://qiita.com/makky_tyuyan/items/d692e1fe2aeba979bc11
 ;; https://github.com/railwaycat/homebrew-emacsmacport
 
-;; MacEmacs JP Emacs24-with-inline-patch ãƒã‚¤ãƒŠãƒªã‚’åˆ©ç”¨
-;; Emacs24å‘ã‘ã®è¨­å®š
+;; MacEmacs JP Emacs24-with-inline-patch ¥Ğ¥¤¥Ê¥ê¤òÍøÍÑ
+;; Emacs24¸ş¤±¤ÎÀßÄê
 (setq default-input-method "MacOSX")
-(mac-set-input-method-parameter "com.google.inputmethod.Japanese.base" `title "ã‚")
+(mac-set-input-method-parameter "com.google.inputmethod.Japanese.base" `title "¤¢")
 
-;; è‹±èªfont
+;; ±Ñ¸ìfont
 (set-face-attribute 'default nil
   :family "Menlo" ;; font
   :height 140)    ;; font size
 
-;; æ—¥æœ¬èªfont
+;; ÆüËÜ¸ìfont
 (set-fontset-font
   nil 'japanese-jisx0208
   ;; (font-spec :family "Hiragino Mincho Pro")) ;; font
   (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
 
-;; åŠè§’ã¨å…¨è§’ã®æ¯”ã‚’1:2ã«ã—ãŸã‘ã‚Œã°
+;; È¾³Ñ¤ÈÁ´³Ñ¤ÎÈæ¤ò1:2¤Ë¤·¤¿¤±¤ì¤Ğ
 (setq face-font-rescale-alist
   ;; '((".*Hiragino_Mincho_pro.*" . 1.2)))
-  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2)));; Macç”¨ãƒ•ã‚©ãƒ³ãƒˆè¨­å®š
+  '((".*Hiragino_Kaku_Gothic_ProN.*" . 1.2)));; MacÍÑ¥Õ¥©¥ó¥ÈÀßÄê
 
-;; åˆæœŸçŠ¶æ…‹
+;; ½é´ü¾õÂÖ
 (if (string= default-directory "/") (cd "~/"))
 
 ;; basic setup
@@ -62,15 +62,15 @@
 (global-set-key "\C-o" 'toggle-input-method)
 (global-set-key "\C-h" 'delete-backward-char)
 
-;; ç´”æ­£ã®emacsã‚’MACã§ä½¿ã†ã¨Googleæ—¥æœ¬èªå…¥åŠ›ãŒä½¿ãˆãªã„
-(define-key key-translation-map (kbd "C-h") (kbd "<DEL>")) ; æ—¥æœ¬èªå¤‰æ›ä¸­ã®C-h
+;; ½ãÀµ¤Îemacs¤òMAC¤Ç»È¤¦¤ÈGoogleÆüËÜ¸ìÆşÎÏ¤¬»È¤¨¤Ê¤¤
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>")) ; ÆüËÜ¸ìÊÑ´¹Ãæ¤ÎC-h
 
-;; nn = ã‚“
+;; nn = ¤ó
 (setq quail-japanese-use-double-n t)
 
 ;; keisen-mule
 (unless (fboundp 'sref) (defalias 'sref 'aref))
-(autoload 'keisen-mode "keisen-mule" "MULEç‰ˆç½«ç·šãƒ¢ãƒ¼ãƒ‰" t)
+(autoload 'keisen-mode "keisen-mule" "MULEÈÇ·ÓÀş¥â¡¼¥É" t)
 
 ;; delete file if empty
 ;; ref. http://www.bookshelf.jp/cgi-bin/goto.cgi?file=meadow&node=delete%20nocontents
@@ -84,7 +84,7 @@
         (message (concat "Deleted " (file-name-nondirectory filename)))
         ))))
 
-;; toolbarã‚’æ¶ˆã™
+;; toolbar¤ò¾Ã¤¹
 (tool-bar-mode 0)
 
 (global-font-lock-mode t)  ; always turn on syntax highlighting (e21)

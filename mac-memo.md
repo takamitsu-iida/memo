@@ -8,7 +8,13 @@
 
 .bashrcは作っても自動では読み込まれないので、先に.bash_profileを作る。
 
-```
+2019年1月時点はこれ。
+
+```bash
+# bash_completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# load .bashrc
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
@@ -16,9 +22,9 @@ fi
 
 # .bashrc
 
-2018年9月時点はこれ。
+2019年1月時点はこれ。
 
-```
+```bash
 # alias
 alias ls='ls -F'
 
@@ -42,12 +48,154 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.158.20"'
 ```
 
-# バックスラッシュの入力
+# macOS Mojave 10.14にしてからの作業
 
-まさか＼と￥が違う扱いとは。
+古い homebrew をアンインストール。この作業をすると、かつてインストールしたものは全て使えなくなる。
 
-macのデフォルトの設定では￥が入力されるが、Pythonで￥nをprintしても改行しない。
-￥nではなく＼nで書かなければならない
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+```
+
+homebrew をインストール
+
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+必須ツールを入れ直す。
+
+```bash
+iida-macbook-pro:~ iida$ brew install openssl
+iida-macbook-pro:~ iida$ brew install nodebrew
+iida-macbook-pro:~ iida$ brew install cdrtools
+iida-macbook-pro:~ iida$ brew install bash-completion
+```
+
+## ansibleのインストール
+
+macにansibleを入れる
+
+pipを最新化
+
+```bash
+pip install --proxy=http://user:pass@proxy.server:8080 --upgrade pip
+```
+
+普通にインストールする場合
+
+```bash
+pip install  --proxy=http://user:pass@proxy.server:8080 ansible
+```
+
+最新にアップデートする場合
+
+```bash
+pip install -U  --proxy=http://user:pass@proxy.server:8080 ansible
+```
+
+バージョンを指定する場合
+
+```bash
+pip install  --proxy=http://user:pass@proxy.server:8080 ansible==2.5
+```
+
+開発版をインストールするなら、インターネットに直接つないでからこれ。
+
+```bash
+pip install git+https://github.com/ansible/ansible.git@devel
+```
+
+## Mozcのインストール（10.14 Mojaveではインストールできない）
+
+公式サイト通りに実行する。
+
+<https://github.com/google/mozc/blob/master/docs/build_mozc_in_osx.md>
+
+Mozcの前提条件になっているのは以下の３つ。
+
+- Xcode
+- Ninja
+- Qt 5
+
+XcodeはMac App Storeからインストールする。
+
+Ninjaはbrewでインストールする。
+
+```bash
+brew install ninja
+```
+
+GUIツールの利用は諦めて、Qtはインストールしない
+
+コードの取得。とても時間かかる。
+
+```bash
+cd ~/tmp
+git clone https://github.com/google/mozc.git -b master --single-branch --recursive
+```
+
+コンパイル。
+
+```bash
+cd src
+sw_vers
+GYP_DEFINES="mac_sdk=10.14 mac_deployment_target=10.14" python build_mozc.py gyp --noqt --branding=GoogleJapaneseInput
+python build_mozc.py build -c Release unix/emacs/emacs.gyp:mozc_emacs_helper
+```
+
+## emacsのインストール
+
+古いCarbon Emacs22はtoggle-input-methodとIMEが連動するため非常に快適に利用できる。
+新しいmacOSで動かなくなるギリギリまでこれを利用する。
+
+ダウンロード元
+<http://th.nao.ac.jp/MEMBER/zenitani/emacs-j.html>
+
+もちろん新しいemacsを併用することもできる。
+新しいemacsはbrew castでインストールするのが楽。
+
+参考文献
+<http://keisanbutsuriya.hateblo.jp/entry/2016/04/10/115945>
+
+参考文献
+<https://github.com/railwaycat/homebrew-emacsmacport>
+
+```bash
+brew tap railwaycat/emacsmacport
+brew cask install emacs-mac
+```
+
+実行結果。emacs-26.1がインストールされた。
+/Applicationにも自動登録されるので、古いemacsが存在する場合は事前に名前を変えておく。
+
+```bash
+iida-macbook-pro:src iida$ brew cask install emacs-mac
+==> Satisfying dependencies
+==> Downloading https://s3.amazonaws.com/emacs-mac-port/emacs-26.1-mac-7.2-10.14.zip
+Already downloaded: /Users/iida/Library/Caches/Homebrew/downloads/0f62846e0affb78710f72d13aec0aa91149385e60648cdc33b2f9b38081aae68--emacs-26.1-mac-7.2-10.14.zip
+==> Verifying SHA-256 checksum for Cask 'emacs-mac'.
+==> Installing Cask emacs-mac
+==> Moving App 'Emacs.app' to '/Applications/Emacs.app'.
+==> Linking Binary 'Emacs' to '/usr/local/bin/emacs'.
+==> Linking Binary 'ebrowse' to '/usr/local/bin/ebrowse'.
+==> Linking Binary 'emacsclient' to '/usr/local/bin/emacsclient'.
+==> Linking Binary 'etags' to '/usr/local/bin/etags'.
+🍺  emacs-mac was successfully installed!
+```
+
+# キーボード設定　Ctrl-Spaceの解除
+
+Ctrl-Spaceのキーバンドは日本語入力に持って行かれるので、emacsのマークセットができなくなってしまう。
+キーボードの設定でCtrl-Spaceを利用しているチェックボックスを外しておくこと。
+
+# キーボード設定　バックスラッシュの入力
+
+Macでは＼と￥が違う扱いになっている。
+
+プログラムを書くときには＼でないと都合が悪い。
+Pythonで￥nをprintしても改行しない。
+
+＼の出し方は、
 
 - optionキーを押しながら￥キーを押す
 
@@ -60,7 +208,7 @@ Google日本語入力の場合は以下の通り。
 1. 「環境設定...」を選択
 1. 「一般」の「¥キーで入力する文字」を「\（バックスラッシュ）」に変更
 
-# キーボード設定
+# キーボード設定　アプリケーションごとに入力ソースを自動的に切り替える
 
 他のアプリからターミナルに移るたびに日本語入力状態を確認するのは面倒なので必ず設定を変えること。
 
@@ -69,7 +217,6 @@ Google日本語入力の場合は以下の通り。
 - [x] 書類ごとに入力ソースを自動的に切り替える
 
 デフォルトはチェックがついてないので、つけること。
-
 
 # sshの設定
 
@@ -106,43 +253,44 @@ Host 172.20.0.24
   User cisco
 ```
 
-
-
 # vagrant
 
 このサイトからダウンロードしてインストールする。
-https://www.vagrantup.com/downloads.html
+
+<https://www.vagrantup.com/downloads.html>
 
 環境変数 VAGRANT_HOME を設定しておくか、未指定時は```$HOME/.vagrant.d```にインストールされる。
 
-### インストールしたバージョンの確認。
+## インストールしたバージョンの確認。
 
-```
+```bash
 iida-macbook-pro:bin iida$ vagrant --version
 Vagrant 2.0.1
 ```
 
-### ボックスのインストール方法
+## ボックスのインストール方法
 
 公開されているボックスの置き場はここ。
-http://www.vagrantbox.es/
+
+<http://www.vagrantbox.es/>
 
 {tite}は任意の文字列。識別しやすい、わかりやすい文字列を使えば良い。
 
-```
-$ vagrant box add {title} {url}
-$ vagrant init {title}
-$ vagrant up
+```bash
+vagrant box add {title} {url}
+vagrant init {title}
+vagrant up
 ```
 
 今回はUbuntuのボックスを使う。
 
 Ubuntu 14.04.5 LTS (Trusty Tahr) server amd64 (Guest Additions 5.1.6)
-https://github.com/sepetrov/trusty64/releases/download/v0.0.5/trusty64.box
+
+<https://github.com/sepetrov/trusty64/releases/download/v0.0.5/trusty64.box>
 
 ボックスのダウンロード（時間かかる）
 
-```
+```bash
 $ vagrant box add ubuntu-14.04.5 https://github.com/sepetrov/trusty64/releases/download/v0.0.5/trusty64.box
 ==> box: Box file was not detected as metadata. Adding it directly...
 ==> box: Adding box 'ubuntu-14.04.5' (v0) for provider:
@@ -153,28 +301,28 @@ iida-macbook-pro:ubuntu-14.04.5 iida$
 
 ここにデータが降ってくる
 
-```
+```bash
 ~/.vagrant.d/{title}
 ```
 
 今回の場合は ```~/.vagrant.d/ubuntu-14.04.5/```
 
-### 作業場所を作る
+## 作業場所を作る
 
 基本的にVagrantfileの存在する場所で作業をすることになる。
 
-```
-$ mkdir -p ~/Vagrant/ubuntu-14.04.5
-$ cd ~/Vagrant/ubuntu-14.04.5/
+```bash
+mkdir -p ~/Vagrant/ubuntu-14.04.5
+cd ~/Vagrant/ubuntu-14.04.5/
 ```
 
-### 作業場所でvagrantを初期化する
+## 作業場所でvagrantを初期化する
 
-```
+```bash
 vagrant init ボックス名
 ```
 
-```
+```bash
 iida-macbook-pro:ubuntu-14.04.5 iida$ vagrant init ubuntu-14.04.5
 A `Vagrantfile` has been placed in this directory. You are now
 ready to `vagrant up` your first virtual environment! Please read
@@ -190,9 +338,9 @@ drwxr-xr-x  4 staff   128 12 10 15:48 ..
 iida-macbook-pro:ubuntu-14.04.5 iida$
 ```
 
-### Vagrantファイルを編集する
+## Vagrantファイルを編集する
 
-```
+```bash
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -209,22 +357,21 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+## 状態確認
 
-### 状態確認
-
-```
+```bash
 vagrant status
 ```
 
-### インスタンスの起動
+## インスタンスの起動
 
-```
+```bash
 vagrant up
 ```
 
-### 接続
+## 接続
 
-```
+```bash
 vagrant ssh
 ```
 
@@ -233,21 +380,21 @@ vagrant ssh
 このサイトが最初のとっかかりによい。
 
 ローカルインストールからRESTful APIまで
-https://qiita.com/noralife/items/4c9b975e9d1d664720a0
 
+<https://qiita.com/noralife/items/4c9b975e9d1d664720a0>
 
 # nodejsとnode-redのインストール(Ubuntuボックス)
 
-```
-$ vagrant up
-$ vagrant ssh
+```bash
+vagrant up
+vagrant ssh
 ```
 
 以下、ubuntu内で作業
 node.jsは安定版だと古すぎてダメ
 このやり方だと安定版しか降ってこない。
 
-```
+```bash
 # $ sudo apt-get update
 # $ sudo apt-get install nodejs
 # $ sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
@@ -257,35 +404,34 @@ node.jsは安定版だと古すぎてダメ
 最新版を取りに行くには
 レポジトリを追加してからインストールする。
 
-```
-$ sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
-$ sudo apt-get install -y nodejs
-$ sudo npm install -g node-red
+```bash
+sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm install -g node-red
 ```
 
-### node-redを実行する
+## node-redを実行する
 
-```
-$ node-red
+```bash
+node-red
 ```
 
 母艦のMacのブラウザから
-http://192.168.100.100:1880/
+<http://192.168.100.100:1880/>
 にアクセスする
 
 node-redのデータ類は ~/.node-red に置かれる。
 
-
 # MySQLのインストール(Ubuntuボックス)
 
-```
-$ sudo apt-get install -y mysql-server
+```bash
+sudo apt-get install -y mysql-server
 ```
 
 インストールの途中でrootユーザのパスワードを設定するように促される
 
-```
-$ mysql -uroot -p
+```bash
+mysql -uroot -p
 Enter password: [rootパスワードの入力]
 
 mysql> CREATE DATABASE nodered;
@@ -297,31 +443,29 @@ Query OK, 0 rows affected (0.01 sec)
 
 node-red用のmysqlライブラリをインストールする
 
-```
-$ cd ~/.node-red/
-$ npm install node-red-node-mysql
-$ node-red
+```bash
+cd ~/.node-red/
+npm install node-red-node-mysql
+node-red
 ```
 
 ---
 
 # redisサーバ(Ubuntuボックス)
 
-
 インストール
 
-```
-$ sudo apt-get -y install redis-server
+```bash
+sudo apt-get -y install redis-server
 ```
 
 インストールすると自動で起動する。
-
 
 設定
 
 /etc/redis/redis.conf
 
-```
+```bash
 # 待ち受けポート
 port 6379
 
@@ -350,49 +494,47 @@ appendfsync everysec
 
 起動
 
+```bash
+sudo systemctl restart redis
 ```
-$ sudo systemctl restart redis
-```
-
-
 
 # tftpサーバ
 
 /usr/libexec/tftpd はデーモンなので通常通りには起動できず、launchctlを経由して起動する。
 設定は
-```
+
+```bash
 /System/Library/LaunchDaemons/tftp.plist
 ```
+
 を編集する。
 
-### 起動
+## 起動
 
-```
+```bash
 sudo launchctl load -w /System/Library/LaunchDaemons/tftp.plist
 ```
 
+## 終了
 
-### 終了
-
-```
+```bash
 sudo launchctl unload -w /System/Library/LaunchDaemons/tftp.plist
 ```
-
 
 # emacs
 
 2017年11月時点
 emacs25は日本語(IME)の扱いがうまくいかないので、emacs24.3を入れるのがよい。
 
+# システムにPython3をインストールする
 
-# Python3のインストール
-
-以下のpyenvを使ったほうがよい。
+システムはPython2のままにして、個人用にpyenvを使ったほうがよい。
+システムにPython3を入れるなら、homebrewを使えばいい。
 
 1. homebrewをインストールする
 2. homebrewでpython3をインストールする
 
-```
+```bash
 brew install python3
 ```
 
@@ -401,29 +543,28 @@ brew install python3
 使い分ける方法には、virtualenvとpyenvがある。
 virtualenvは少々使いづらい印象のため、pyenvを使う。
 
-# pyenvのインストール
+## pyenvのインストール
 
 githubのpyenvをホームディレクトリの.pyenvにクローンする。
 
-```
-$ git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+```bash
+git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 ```
 
 .bashrcを編集する
 
-```
+```bash
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 eval "$(pyenv init -)"
 ```
 
-# pyenv配下にpythonをインストールする
-
+## pyenv配下にpythonをインストールする
 
 このコマンドでインストールできるpythonのバージョンが表示される。
 
-```
+```bash
 pyenv install --list
 ```
 
@@ -431,16 +572,16 @@ pyenvをインストールして時間が経過している場合は、最新の
 その場合pyenv自身を新しくしたほうがいい。
 もともとgitで入れているので、pullすれば最新になる。
 
-```
-$ cd ~/.pyenv
-$ git pull
+```bash
+cd ~/.pyenv
+git pull
 ```
 
 ここでは３系と２系、両方入れておく。
 
-```
-$ pyenv install 3.6.3
-$ pyenv install 2.7.14
+```bash
+pyenv install 3.6.3
+pyenv install 2.7.14
 ```
 
 これにより~/.pyenv/versions/配下にPythonが配置される。
@@ -449,27 +590,27 @@ $ pyenv install 2.7.14
 `xcode-select --install`
 をやってから、再度実行するとうまくいく。
 
-```
-$ pyenv versions
-```
+このコマンドでインストール済みのバージョン一覧が表示される。
 
-コマンドでインストール済みのバージョン一覧が表示される。
+```bash
+pyenv versions
+```
 
 インストール後はリフレッシュする。
 
-```
-$ pyenv rehash
+```bash
+pyenv rehash
 ```
 
 古い方のバージョンで
 
-```
+```bash
 pip freeze > requirments.txt
 ```
 
 しておいて、新しいバージョンで
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -477,33 +618,28 @@ pip install -r requirements.txt
 
 Pythonをアンインストールする場合
 
+```bash
+pyenv uninstall 3.6.3
 ```
-$ pyenv uninstall 3.6.3
-```
 
-
-
-# 使うPythonを変更する
+## 使うPythonを変更する
 
 特定のディレクトリ配下だけで指定したいのであればpyenv localを使う。
 どの場所にいてもそのバージョンを使いたい場合はpyenv globalを使う。
 通常はglobalを指定しておけばよい。
 
-```
-$ pyenv global 3.6.3
+```bash
+pyenv global 3.6.3
 ```
 
 .bashrcにも上記を追加する。
-
 
 # node.jsをインストールする
 
 デフォルトではnode.jsはインストールされていない。
 nodebrewを使ってインストールする。
 
-```
-$ brew install nodebrew
-
+```bash
 iida-macbook-pro:~ iida$ brew install nodebrew
 Updating Homebrew...
 ==> Downloading https://github.com/hokaccha/nodebrew/archive/v0.9.7.tar.gz
@@ -530,8 +666,8 @@ iida-macbook-pro:~ iida$
 
 言われたとおりにする。
 
-```
-$ /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+```bash
+/usr/local/opt/nodebrew/bin/nodebrew setup_dirs
 ```
 
 ~/.nodebrewフォルダができる
@@ -540,29 +676,28 @@ $ /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
 
 source .bash_profile
 
-
-```
-$ nodebrew -v
-```
-
-```
-$ nodebrew ls-remote
+```bash
+nodebrew -v
 ```
 
+```bash
+nodebrew ls-remote
 ```
-$ nodebrew install-binary v8.9.0
+
+```bash
+nodebrew install-binary v8.9.0
 ```
 
 または
 
-```
-$ nodebrew install-binary stable
+```bash
+nodebrew install-binary stable
 ```
 
-### インストール済みのバージョンをみる
+## インストール済みのバージョンをみる
 
-```
-$ nodebrew ls
+```bash
+nodebrew ls
 
 iida-macbook-pro:~ iida$ nodebrew ls
 v8.9.0
@@ -572,20 +707,19 @@ current: none
 
 カレントを指定することで、nodejsを使えるようになる
 
+```bash
+nodebrew use v8.9.0
 ```
-$ nodebrew use v8.9.0
-```
-
 
 # Command Line Toolsのインストール
 
-```
+```bash
 xcode-select --install
 ```
 
 # HomeBrewのインストール
 
-```
+```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew update
@@ -596,7 +730,7 @@ brew update
 mkisofsはcdrtoolsの中に含まれている。
 これは`/usr/local/sbin`にリンクを張ろうとするので、予め作成して、グループadminに書き込み権限を与えておく。
 
-```
+```bash
 sudo mkdir /usr/local/sbin
 sudo chgrp admin /usr/local/sbin
 sudo chmod g+w /usr/local/sbin
@@ -604,8 +738,8 @@ sudo chmod g+w /usr/local/sbin
 
 ついでに/etc/pathsに`/usr/local/sbin`を加えておく。
 
-```
-$ cat /etc/paths
+```bash
+iida$ cat /etc/paths
 /usr/local/bin
 /usr/local/sbin
 /usr/bin
@@ -616,8 +750,8 @@ $ cat /etc/paths
 
 cdrtoolsをインストールする。
 
-```
-$ brew install cdrtools
+```bash
+iida$ brew install cdrtools
 ==> Downloading https://homebrew.bintray.com/bottles/cdrtools-3.01_1.high_sierra.bottle.1.tar.gz
 Already downloaded: /Users/iida/Library/Caches/Homebrew/cdrtools-3.01_1.high_sierra.bottle.1.tar.gz
 ==> Pouring cdrtools-3.01_1.high_sierra.bottle.1.tar.gz
@@ -626,28 +760,33 @@ Already downloaded: /Users/iida/Library/Caches/Homebrew/cdrtools-3.01_1.high_sie
 
 # bash-completionのインストール
 
+```bash
+iida-macbook-pro:src iida$ brew install bash-completion
+==> Downloading https://homebrew.bintray.com/bottles/bash-completion-1.3_3.mojave.bottle.tar.gz
+######################################################################## 100.0%
+==> Pouring bash-completion-1.3_3.mojave.bottle.tar.gz
+==> Caveats
+Add the following line to your ~/.bash_profile:
+  [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d
+==> Summary
+🍺  /usr/local/Cellar/bash-completion/1.3_3: 189 files, 607.8KB
 ```
-brew install bash-completion
 
-Add the following lines to your ~/.bash_profile:
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
-```
-
-
-# pythonのインストール(OLD)
+# pythonのインストール(OBSOLETED)
 
 Macには最初から入っているが、都合が悪いので、入れなおす。
 
-```
+```bash
 brew install python
 brew install python3
 ```
 
-# virtualenv、virtualenvwrapperのインストール(OLD)
+# virtualenv、virtualenvwrapperのインストール(OBSOLETED)
 
-```
+```bash
 sudo pip install virtualenv
 sudo pip install virtualenvwrapper
 
@@ -657,7 +796,7 @@ mkdir ~/.virtualenvs
 
 .bashrcに追加する(.bashrcは最初は存在しないので注意)
 
-```
+```bash
 cat << EOF >> .bashrc
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
@@ -666,7 +805,7 @@ EOF
 
 .bash_profileに追加(.bash_profileは最初は存在しないので注意)
 
-```
+```bash
 cat << EOF >> .bash_profile
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
@@ -674,10 +813,9 @@ fi
 EOF
 ```
 
+# python仮想環境の作成(OBSOLETED)
 
-# python仮想環境の作成(OLD)
-
-```
+```bash
 mkvirtualenv --no-site-package --python /usr/local/bin/python2 p2
 mkvirtualenv --no-site-package --python /usr/local/bin/python3 p3
 
@@ -686,17 +824,16 @@ workon p3
 
 グローバルに戻る
 
-```
+```bash
 deactivate
 ```
 
 不要な環境の削除
 
-```
+```bash
 deactivate
 rmvirtualenv p3
 ```
-
 
 # アーカイバ
 
@@ -718,8 +855,7 @@ GrandPerspective
 
 DesktopToMovie
 
-Jing http://www.jingproject.com/
-
+Jing <http://www.jingproject.com/>
 
 # キーバインディングの変更
 
@@ -729,7 +865,7 @@ Jing http://www.jingproject.com/
 
 ~/Library/KeyBindings/DefaultKeyBinding.dictのサンプル
 
-```
+```dict
 {
     "^c"="copy:";
     "^x"="cut:";
