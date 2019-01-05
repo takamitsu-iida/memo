@@ -142,6 +142,9 @@ Visual Studio Codeの設定メモ。
     "extends": "eslint:recommended"
   },
 
+  // css
+  "css.lint.unknownProperties": "ignore",
+
   // python
   "python.pythonPath": "${env:PYENV_ROOT}/shims/python",
   "python.linting.pylintEnabled": true,
