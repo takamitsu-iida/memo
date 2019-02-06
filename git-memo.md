@@ -196,13 +196,13 @@ data/
 置き場所は任意だが、PATHを通すのは面倒なので、~直下にgiboフォルダを置いて、その中で実行する。
 
 ```bash
-git clone https://github.com/simonwhitaker/gibo.git gibo
+git clone https://github.com/simonwhitaker/gibo.git
 ```
 
-gibo -lを実行するとgithubからリストを取ってくるのでそれを見て必要な環境を列挙する
+gibo list を実行するとgithubからリストを取ってくるのでそれを見て必要な環境を列挙する
 
 ```bash
-gibo Windows Linux OSX Emacs vim python >> .gitignore
+./gibo dump Windows Linux macOS Emacs vim python Node >> .gitignore
 ```
 
 # GitLab連携

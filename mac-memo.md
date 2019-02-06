@@ -65,10 +65,13 @@ homebrew をインストール
 必須ツールを入れ直す。
 
 ```bash
-iida-macbook-pro:~ iida$ brew install openssl
-iida-macbook-pro:~ iida$ brew install nodebrew
-iida-macbook-pro:~ iida$ brew install cdrtools
-iida-macbook-pro:~ iida$ brew install bash-completion
+brew install openssl
+brew install nodebrew
+brew install cdrtools
+brew install bash-completion
+brew install tree
+brew install telnet
+brew install tnftp
 ```
 
 ## ansibleのインストール

@@ -421,22 +421,37 @@ npm -g install eslint
 npm -g install eslint-config-google
 ```
 
-.eslintrc.jsを次のように設定
+.eslintrc.jsを次のように設定する。
+
+(20190223修正)
 
 ```js
+// npm -g install eslint
+// npm -g install eslint-config-google
+
 module.exports = {
-  "extends": "google",
-  "installedESLint": true,
+  "extends": ["google"],
+  // "installedESLint": true,
   "env": {
     "browser": true,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "rules": {
     // インデントは2スペース
     "indent": ["error", 2],
 
-    // 改行コードはWindows
-    "linebreak-style": ["error", "windows"],
+    // 改行コード unix or windows
+    "linebreak-style": ["error", "unix"],
 
+    // コメント要否
     "require-jsdoc": ["error", {
       "require": {
         "FunctionDeclaration": false,
@@ -445,10 +460,11 @@ module.exports = {
       }
     }],
 
-    // 無視設定
+    // 無視する設定
     "max-len": "off",
     "dot-notation": "off",
     "camelcase": "off"
+
   }
 };
 ```
