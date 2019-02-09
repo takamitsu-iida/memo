@@ -74,109 +74,118 @@ Visual Studio Codeの設定メモ。
 ファイル→基本設定→設定
 
 ```js
-// 既定の設定を上書きするには、このファイル内に設定を挿入します
 {
-  // HTTP 構成
-  // 使用するプロキシ設定。設定されていない場合、環境変数 http_proxy および https_proxy から取得されます。
-  // "http.proxy": "http://username:passowrd@proxy-addr:8080",
-  "http.proxy": "",
+    "editor.minimap.enabled": false,
 
-  // 提供された CA の一覧と照らしてプロキシ サーバーの証明書を確認するかどうか。
-  "http.proxyStrictSSL": false,
+    // 1 つのタブに相当するスペースの数。`editor.detectIndentation` がオンの場合、この設定はファイル コンテンツに基づいて上書きされます。
+    "editor.tabSize": 2,
 
-  // ミニマップを表示するかどうかを制御します
-  "editor.minimap.enabled": false,
+    // 使用するプロキシ設定。設定されていない場合、環境変数 http_proxy および https_proxy から取得されます。
+    // "http.proxy": "http://username:passowrd@proxy-addr:8080",
+    "http.proxy": "",
 
-  // エディターで空白文字を表示するかどうかを制御します
-  "editor.renderWhitespace": "boundary",
+    // 提供された CA の一覧と照らしてプロキシ サーバーの証明書を確認するかどうか。
+    "http.proxyStrictSSL": false,
 
-  // タブ 1 つに相当するスペースの数。
-  "editor.tabSize": 2,
+    // エディターで空白文字を表示するかどうかを制御します
+    "editor.renderWhitespace": "boundary",
 
-  // ファイルを開くと、そのファイルの内容に基づいて `editor.tabSize` と `editor.insertSpaces` が検出されます。
-  "editor.detectIndentation": true,
+    // エディターで制御文字を表示する必要があるかどうかを制御します
+    "editor.renderControlCharacters": true,
 
-  // エディターで最後の行を越えてスクロールするかどうかを制御します
-  "editor.scrollBeyondLastLine": false,
+    // ファイルを開くと、そのファイルの内容に基づいて `editor.tabSize` と `editor.insertSpaces` が検出されます。
+    "editor.detectIndentation": true,
 
-  // Controls whether the editor should render indent guides
-  "editor.renderIndentGuides": true,
+    // エディターで最後の行を越えてスクロールするかどうかを制御します
+    "editor.scrollBeyondLastLine": false,
 
-  // エディターで制御文字を表示する必要があるかどうかを制御します
-  "editor.renderControlCharacters": true,
+    // Controls whether the editor should render indent guides
+    "editor.renderIndentGuides": true,
 
-  // 有効にすると、ファイルの保存時に末尾の空白をトリミングします。
-  "files.trimTrailingWhitespace": true,
+    // 有効にすると、ファイルの保存時に末尾の空白をトリミングします。
+    "files.trimTrailingWhitespace": true,
 
-  // マウス ホイール スクロール イベントの `deltaX` と `deltaY` で使用される乗数
-  "editor.mouseWheelScrollSensitivity": 2,
+    // マウス ホイール スクロール イベントの `deltaX` と `deltaY` で使用される乗数
+    "editor.mouseWheelScrollSensitivity": 2,
 
-  // 拡張機能 final-newline
-  "files.insertFinalNewline": true,
+    // 拡張機能 final-newline
+    "files.insertFinalNewline": true,
 
-  // JavaScript の検証を有効/無効にします
-  "javascript.validate.enable": false,
-
-  "eslint.enable": true,
-
-  "eslint.options": {
-    "rules": {
-      "quotes": [
-        2,
-        "single"
-      ],
-       "linebreak-style": [
-        2,
-        "unix"
-      ],
-      "semi": [
-        2,
-        "always"
-      ],
-      "no-console": 0
+    // JavaScript の検証を有効/無効にします
+    "javascript.validate.enable": true,
+    "eslint.enable": true,
+    "eslint.options": {
+        "rules": {
+            "quotes": [
+                2,
+                "single"
+            ],
+            "linebreak-style": [
+                2,
+                "unix"
+            ],
+            "semi": [
+                2,
+                "always"
+            ],
+            "no-console": 0
+        },
+        "env": {
+            "es6": true,
+            "browser": true
+        },
+        "extends": "eslint:recommended"
     },
-    "env": {
-      "es6": true,
-      "browser": true
+
+    // css
+    "css.lint.unknownProperties": "ignore",
+
+    // python
+    "[python]": {
+        "editor.tabSize": 2
     },
-    "extends": "eslint:recommended"
-  },
+    "python.pythonPath": "${env:PYENV_ROOT}/shims/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "${env:PYENV_ROOT}/shims/pylint",
+    "python.linting.lintOnSave": true,
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfPath": "${env:PYENV_ROOT}/shims/yapf",
+    "python.formatting.yapfArgs": [
+        "--style={based_on_style: chromium, indent_width: 2, continuation_indent_width: 2, column_limit: 120}"
+    ],
 
-  // css
-  "css.lint.unknownProperties": "ignore",
+    // git
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
 
-  // python
-  "python.pythonPath": "${env:PYENV_ROOT}/shims/python",
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": "${env:PYENV_ROOT}/shims/pylint",
-  "python.linting.lintOnSave": true,
-  "python.formatting.provider": "yapf",
-  "python.formatting.yapfPath": "${env:PYENV_ROOT}/shims/yapf",
-  "python.formatting.yapfArgs": [
-      "--style={based_on_style: chromium, indent_width: 2, continuation_indent_width: 4, column_limit: 120}"
-  ],
+    //
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Visual Studio Light",
 
-  // typescript
-  "typescript.check.tscVersion": false
+    //
+    "window.zoomLevel": 0,
+
+    // typescript
+    // "typescript.check.tscVersion": false
+
+    // markdownlint
+    "markdownlint.config": {
+        "default": true,
+        "no-hard-tabs": false,
+        "MD003": false,
+        "MD007": { "indent": 2 },
+        "MD013": false,
+        "MD024": false,
+        "MD025": false,
+        "MD033": false
+    },
+
+    // YAML
+    "[yaml]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": true
+    },
 }
-
-  // markdownlint
-  "markdownlint.config": {
-    "default": true,
-    "no-hard-tabs": false,
-    "MD003": false,
-    "MD007": { "indent": 2 },
-    "MD013": false,
-    "MD025": false,
-    "MD033": false
-  }
-
-  // YAML
-  "[yaml]": {
-      "editor.tabSize": 2,
-      "editor.detectIndentation": false
-  }
-
 ```
 
 - 2017/06/11 -- バージョンアップで追加されたminimap機能が邪魔なのでfalseにするよう変更。
