@@ -74,6 +74,12 @@ brew install telnet
 brew install tnftp
 ```
 
+```bash
+npm i -g http-server
+npm i -g @vue/cli
+```
+
+
 ## ansibleのインストール
 
 macにansibleを入れる
