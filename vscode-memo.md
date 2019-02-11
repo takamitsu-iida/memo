@@ -185,6 +185,12 @@ Visual Studio Codeの設定メモ。
         "editor.tabSize": 2,
         "editor.detectIndentation": true
     },
+
+    // vue
+    "[vue]": {
+        "editor.tabSize": 2
+    },
+
 }
 ```
 
@@ -193,3 +199,4 @@ Visual Studio Codeの設定メモ。
 - 2018/07/01 -- 1行目を#!/usr/bin/pythonで始めるとそれがVSCodeで利用されてしまうので、明示的にパスを追加
 - 2018/07/15 -- markdownlint用の設定を追加
 - 2019/01/04 -- yaml用の設定を追加
+- 2019/02/11 -- vue用のタブサイズ設定を追加
