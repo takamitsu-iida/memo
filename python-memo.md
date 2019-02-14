@@ -1,3 +1,18 @@
+[//]:# (@@@)
+# テーブル表示
+
+## tabulate.py
+
+ファイル一つでいいのでお気に入り。
+
+<https://pypi.org/project/tabulate/>
+
+## PrettyTable
+
+これも良い。
+
+<https://pypi.org/project/PrettyTable/>
+
 
 [//]:# (@@@)
 # pygments

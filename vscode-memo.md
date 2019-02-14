@@ -136,6 +136,13 @@ Visual Studio Codeの設定メモ。
         },
         "extends": "eslint:recommended"
     },
+    "eslint.validate": [
+        "javascript",
+        {
+          "language": "vue",
+          "autoFix": true
+        }
+    ],
 
     // css
     "css.lint.unknownProperties": "ignore",
@@ -200,3 +207,4 @@ Visual Studio Codeの設定メモ。
 - 2018/07/15 -- markdownlint用の設定を追加
 - 2019/01/04 -- yaml用の設定を追加
 - 2019/02/11 -- vue用のタブサイズ設定を追加
+- 2019/02/15 -- .vueファイルをeslintの対象に追加
