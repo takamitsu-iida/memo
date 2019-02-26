@@ -50,13 +50,22 @@ export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.1
 
 # macOS Mojave 10.14にしてからの作業
 
-古い homebrew をアンインストール。この作業をすると、かつてインストールしたものは全て使えなくなる。
+ヘッダファイルをインストールする。
+Xcode10からは標準の場所にしかヘッダファイルを置いてくれないので、手動でヘッダファイルをインストールする。
+これをやらないとhomebrewやpyenvなど、多方面に影響がでる。
+
+```bash
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+```
+
+古い homebrew をアンインストール。
+この作業をするとかつてインストールしたものは全て使えなくなる。
 
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
 ```
 
-homebrew をインストール
+homebrew を改めてインストール
 
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -72,13 +81,79 @@ brew install bash-completion
 brew install tree
 brew install telnet
 brew install tnftp
+brew install autoconf
+brew install git
+brew install jq
+brew install mas  # mas-cli
+brew install nodebrew
+# sshpassは直接導入できないのでインストールスクリプトを指定する
+brew install https://git.io/sshpass.rb
+brew install readline
+brew install wget
 ```
 
 ```bash
 npm i -g http-server
 npm i -g @vue/cli
+npm i -g eslint
+npm i -g eslint-config-google
 ```
 
+## pyenv
+
+```bash
+pyenv install 2.7.14
+pyenv install 3.6.4
+pyenv install anaconda3-5.3.1
+```
+
+```bash
+CFLAGS="-I$(brew --prefix readline)/include -I$(brew --prefix openssl)/include -I$(xcrun --show-sdk-path)/usr/include" \
+LDFLAGS="-L$(brew --prefix readline)/lib -L$(brew --prefix openssl)/lib" \
+PYTHON_CONFIGURE_OPTS=--enable-unicode=ucs2 \
+pyenv install -v anaconda3-5.3.1
+```
+
+
+## pip
+
+```bash
+pip install ansible
+pip install ansible-lint
+pip install graphviz
+pip install jinja2
+pip install jsonpickle
+pip install openpyxl
+pip install xlrd
+pip install pylint
+pip install pyyaml
+pip install prettytable
+pip install requests
+pip install tabulate
+pip install textfsm
+pip install tinydb
+pip install tqdm
+pip install yapf
+pip install ntfy
+```
+
+## dockerのインストール
+
+```bash
+brew cask install docker
+```
+
+GUIでアプリケーションを起動して、インストールを完了する。
+
+```bash
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion /usr/local/etc/bash_completion.d/docker
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion /usr/local/etc/bash_completion.d/docker-machine
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion /usr/local/etc/bash_completion.d/docker-compose
+```
+
+インストールされるイメージはここ。
+
+~/Library/Containers/com.docker.docker/
 
 ## ansibleのインストール
 
@@ -558,6 +633,7 @@ githubのpyenvをホームディレクトリの.pyenvにクローンする。
 
 ```bash
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+git clone https://github.com/yyuu/pyenv-update.git ~/.pyenv/plugins/pyenv-update
 ```
 
 .bashrcを編集する
@@ -567,6 +643,12 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 eval "$(pyenv init -)"
+```
+
+pyenv自身をバージョンアップするときは
+
+```bash
+pyenv update
 ```
 
 ## pyenv配下にpythonをインストールする
@@ -595,7 +677,7 @@ pyenv install 2.7.14
 
 これにより~/.pyenv/versions/配下にPythonが配置される。
 
-失敗インストールに失敗したら、
+インストールに失敗したら、
 `xcode-select --install`
 をやってから、再度実行するとうまくいく。
 

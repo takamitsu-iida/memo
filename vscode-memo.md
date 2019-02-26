@@ -41,6 +41,29 @@ Visual Studio Codeの設定メモ。
 - Angular UI Bootstrap Snippets
 - Jasmine code snippets
 
+## インストールされている拡張機能を確認する方法
+
+```bash
+$ /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --list-extensions
+adamvoss.yaml
+DavidAnson.vscode-markdownlint
+dbaeumer.vscode-eslint
+donjayamanne.githistory
+eamodio.gitlens
+esbenp.prettier-vscode
+GrapeCity.gc-excelviewer
+haruhi-s.sexp
+MS-CEINTL.vscode-language-pack-ja
+ms-python.python
+njpwerner.autodocstring
+octref.vetur
+samverschueren.final-newline
+satokaz.vscode-bs-ctrlchar-remover
+tuttieee.emacs-mcx
+vscoss.vscode-ansible
+wholroyd.jinja
+```
+
 ## 頻繁に使うキー
 
 - ctrl-shift-p コマンド入力
