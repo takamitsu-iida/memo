@@ -92,6 +92,13 @@ brew install readline
 brew install wget
 ```
 
+追加のフォントを入れる。matplotlibで日本語表示をするため。
+
+```bash
+brew tap caskroom/fonts
+brew cask install font-ricty-diminished
+```
+
 ```bash
 npm i -g http-server
 npm i -g @vue/cli

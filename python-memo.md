@@ -1,5 +1,405 @@
+
+[//]:# (@@@)
+## jupyter notebook
+
+anacondaに入ってる。
+
+アップデート方法
+
+```bash
+conda update -n base conda
+conda update jupyter
+conda update notebook
+conda update jupyter_contrib_nbextensions
+```
+
+起動方法
+
+```bash
+jupyter notebook
+```
+
+Ctrl-Cを2回打って終了。
+
+バックグランドでの起動方法
+
+```
+nohup jupyter notebook >> jupyter.log 2>&1 &
+```
+
+- %env
+
+環境変数を取る
+
+- %env PATH
+
+PATH環境変数を取得
+
+- !コマンド
+
+コマンドを実行し、結果をPythonの変数に格納する
+
+- path = !echo $PATH
+
+```text
+%config InlineBackend.firugre_format = 'retina'
+```
+
+Retinaディスプレイを使っているならきれいにでる
+
+```text
+%matplotlib inline
+```
+
+図を別ウィンドウではなくノートブック内に表示する
+
+```python
+from IPython.display import display
+display(df)
+```
+
+Pandasのデータフレームをノートブック内に表示する
+
+```python
+import pandas as pd
+pd.set_option('display.max_rows', 500)
+```
+
+表の表示件数を増やす。
+
+~/.jupyter/nbconfig/edit.json
+
+```js
+{
+  "Editor": {
+    "codemirror_options": {
+      "indentUnit": 2,
+      "vimMode": false, 
+      "keyMap": "default"
+    }
+  }
+}
+```
+
+~/.jupyter/nbconfig/notebook.json
+
+```js
+{
+  "CodeCell": {
+    "cm_config": {
+      "indentUnit": 2
+    }
+  }
+}
+```
+
+グラフで日本語フォントを使う方法はこのページが一番分かりやすい。
+
+<https://qiita.com/yukimura1227/items/b5d82d7780ac6d16cd64>
+
+MacBookの場合はbrew caskでフォントをインストールできる。
+
+```bash
+brew tap caskroom/fonts
+brew cask install font-ricty-diminished
+```
+
+# フォントのキャッシュを削除
+rm ~/.matplotlib/fontList.json
+
+起動時の動作を設定するファイルを生成
+
+~/.jupyter/に設定ファイルが置かれる。
+
+```bash
+jupyter notebook --generate-config
+```
+
+初期ディレクトリを保存しておく。
+
+```python
+import os
+
+if 'startup_path' not in locals():
+  startup_path = os.getcwd()
+  working_path = os.path.join(startup_path, '..')
+
+if os.getcwd() != working_path:
+  os.chdir(working_path)
+```
+
+
+[//]:# (@@@)
+## pandas
+
+pandasのDataFrameを扱うときは、列で思考すること。
+
+行は無限に伸びてくものであり、行に対する処理は時間がかかる可能性が高い。
+
+主に使う型は３つ。３次元以上はPanelを使う。
+
+- Series 1次元
+- DataFrame 2次元
+- Panel 3次元
+
+CSVファイルを読み込む
+
+aaa, bbbのようにコンマの後にスペースを入れている場合はそれを削除するためにskipinitialspace=Trueを引数に渡す。
+
+```python
+filename = 'merged_check_connection_summary.csv'
+path = os.path.join(log_dir, filename)
+df = pd.read_csv(path, encoding='utf-8-sig', skipinitialspace=True, index_col=0)
+display(df.head())
+```
+
+
+
+最初の3行を表示。引数に数字を渡さなけば5行分が表示される。
+
+```python
+df.head(3)
+```
+
+ヘッダだけをリストとして取得
+
+```python
+header_list = df.columns.values
+```
+
+行数・列数を表示。関数ではない。
+
+```python
+df.shape
+```
+
+列の型を表示。関数ではない。
+
+```python
+df.dtypes
+```
+
+特定の列だけに絞りたいときは列名を指定する。
+
+```python
+df['列名1']
+df[['列名1', '列名2']]
+```
+
+特定の行にしぼりたいときはスライスを指定する。
+100行〜105行を取得するときは、こうする。
+
+```python
+df[100:106]
+```
+
+特定の行情報だけを取りたいときは、df.loc()を使う。
+
+100行目の情報だけを取る例。
+
+```python
+df.loc[100]
+```
+
+DataFrame.loc[start:end]としたときに、startとendをどちらも含んだ状態で取り出すので注意。
+
+1行目、2行目、4行目の0列、2列の情報だけを取る。
+
+```python
+df.iloc[[1,2,4],[0,2]]
+```
+
+ループで回す。
+
+```python
+for index, row in df.iterrows():
+    print(row)
+```
+
+条件で抽出する。
+
+Seriesに対して条件を指定すると、一致するかしないかのTrue/Falseの配列が出てくる。
+
+```python
+df['Age'] > 20
+```
+
+このTrue/FalseのSeriesを更にDataFrameに指定することで、Trueの行だけを取り出すことができる。
+よく見るdf[df[...]]はパット見で分かりづらいが、内側の[]がTrue/Falseのシリーズだと理解できれば簡単。
+
+```python
+df[df['Age'] > 20]
+df[df['kcal'] > 450]
+```
+
+列名で絞った後にqueryで行を絞ることもできる。
+
+```python
+df[['name', 'kcal']].query('kcal > 450 and name == "豚肉の生姜焼"')
+df.query('Age > 20')
+df.query('(Age > 20) & (Sex == "female")')
+```
+
+列をシリーズで取り出して、unique()をかけると重複を排除できる。
+
+```python
+area_list = df['area'].unique().tolist()
+```
+
+元の列の長さと、unique()を通した後の長さで変化があれば、重複があったということ。
+
+```python
+print(len(df) == len(df['datetime'].unique()))
+```
+
+drop_duplicates()で同じ行を削除する。
+
+```python
+df.drop_duplicates()
+```
+
+文字列加工はstrを使う。
+
+名を削除する。
+
+```python
+df["workers"] = df["workers"].str.replace("名","")
+```
+
+splitで分離する。万以降を削除する。
+
+```python
+df["income"] = df["income"].str.split("万").str[0]
+```
+
+文字検索
+
+```python
+df = df[df["establishment"].str.contains("2017/", na=False)]
+```
+
+
+列を削除するには、drop axis=1を利用する。
+
+```python
+df = df.drop(["削除列"], axis=1)
+```
+
+重複の有無を真偽値で得る。unique()でもできるけど、こっちのほうがスマート。
+
+```python
+df["company"].duplicated().any()
+```
+
+重複を削除するにはdrop_duplicates()を使う。
+
+company列の重複を削除する。
+
+```python
+df = df.drop_duplicates(["company"])
+```
+
+並び替える。byは列名を指定。ascending=Trueで昇順になる。
+
+```python
+df.sort_values(by="sales", ascending=True).head()
+df.sort_values(by=["establishment"], ascending=False)
+```
+
+型変換。
+
+```python
+data["workers"] = pd.to_numeric(data["workers"])#workers列の値をnumericalに変換
+```
+
+列を追加するにはassignを使う。
+
+True/Falseの値を持つIsChild列を追加。
+
+```python
+df.assign(
+  IsChild = df['Age'] < 20
+)
+```
+
+1/0の値を持つIsChild列を追加。
+
+```python
+df.assign(
+  IsChild = (df['Age'] < 20).astype(int)
+)
+```
+
+連結する。
+
+行方向に連結。
+
+```python
+pd.concat([df1, df2])
+```
+
+列方向に連結。
+
+```python
+df.join(df2, how='inner')
+```
+
+複数の列で個数を計算したい場合はcrosstabを使う。
+引数marginsをTrueとすると、各カテゴリごとの小計および全体の総計が算出できる。
+
+```python
+result_df = pd.crosstab(df['地域'], df['結果'], margins=True).sort_values(by='All')
+display(result_df)
+```
+
+折れ線グラフ
+
+```python
+df.plot(y=['temperature', 'temperature_rolling_mean', 'temperature_pct_change'], figsize=(16,4), alpha=0.5) 
+plt.title('気温変化に関する図')
+```
+
+ヒストグラム
+
+```python
+df.plot(kind='hist', y='sales' , bins=10, figsize=(16,4), alpha=0.5)
+```
+
+
 [//]:# (@@@)
 # テーブル表示
+
+
+## jupyter-notebook
+
+pyenvでanacondaを入れると一緒に入ってくる。
+
+拡張機能のインストール。
+
+<https://github.com/ipython-contrib/jupyter_contrib_nbextensions>
+
+```bash
+conda install -c conda-forge jupyter_contrib_nbextensions
+```
+
+設定
+
+<localhost:8888/nbextensions/>
+
+ダウンロードリンクを作る。
+
+```python
+HTML('<a href="../files/{filename}" target="_blank">{filename}</a>'.format(filename='ref_notebooks-' + datetime.now().strftime('%Y%m%d') + '.zip'))
+```
+
+セルの中での変数呼び出し。
+
+```python
+target = 'test'
+
+!ansible -m ping {target}
+```
+
 
 ## tabulate.py
 
