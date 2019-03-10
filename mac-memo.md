@@ -121,7 +121,6 @@ PYTHON_CONFIGURE_OPTS=--enable-unicode=ucs2 \
 pyenv install -v anaconda3-5.3.1
 ```
 
-
 ## pip
 
 ```bash
