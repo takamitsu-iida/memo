@@ -114,6 +114,16 @@ pyenv install 3.6.4
 pyenv install anaconda3-5.3.1
 ```
 
+anacondaはインストールできないことがある。
+
+これが設定されているとうまくいかないので、もし設定されてたらunsetしてpyenv installする。
+
+```bash
+PYTHON_CONFIGURE_OPTS=--enable-framework
+```
+
+それでもだめなら、これ。
+
 ```bash
 CFLAGS="-I$(brew --prefix readline)/include -I$(brew --prefix openssl)/include -I$(xcrun --show-sdk-path)/usr/include" \
 LDFLAGS="-L$(brew --prefix readline)/lib -L$(brew --prefix openssl)/lib" \
