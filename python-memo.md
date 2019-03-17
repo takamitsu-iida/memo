@@ -1,3 +1,4 @@
+# python関連のメモ書き
 
 [//]:# (@@@)
 ## jupyter notebook
@@ -23,7 +24,7 @@ Ctrl-Cを2回打って終了。
 
 バックグランドでの起動方法
 
-```
+```bash
 nohup jupyter notebook >> jupyter.log 2>&1 &
 ```
 
@@ -74,7 +75,7 @@ pd.set_option('display.max_rows', 500)
   "Editor": {
     "codemirror_options": {
       "indentUnit": 2,
-      "vimMode": false, 
+      "vimMode": false,
       "keyMap": "default"
     }
   }
@@ -105,6 +106,7 @@ brew cask install font-ricty-diminished
 ```
 
 # フォントのキャッシュを削除
+
 rm ~/.matplotlib/fontList.json
 
 起動時の動作を設定するファイルを生成
@@ -113,6 +115,15 @@ rm ~/.matplotlib/fontList.json
 
 ```bash
 jupyter notebook --generate-config
+```
+
+エラー時にセルの中で止めるには、例外を上げる。
+exit()は使わないこと。
+
+```python
+nodes = j.get('nodes')
+if not nodes:
+  raise ValueError("failed to load json data.")
 ```
 
 初期ディレクトリを保存しておく。
@@ -128,6 +139,22 @@ if os.getcwd() != working_path:
   os.chdir(working_path)
 ```
 
+期待通りか判定する。
+
+```python
+exclude_nodes =  ["JSRNW792", "JSSNW247", "JSSNW248"]
+
+try:
+  expect = 0
+  value = df.query('node_id in @exclude_nodes').shape[0]
+  
+  assert value == expect, '期待する値[{}], 入力値[{}]'.format(expect, value)
+
+except AssertionError as e:
+  print('判定失敗:', e)
+else:
+  print('判定成功')
+```
 
 [//]:# (@@@)
 ## pandas
@@ -153,8 +180,6 @@ df = pd.read_csv(path, encoding='utf-8-sig', skipinitialspace=True, index_col=0)
 display(df.head())
 ```
 
-
-
 最初の3行を表示。引数に数字を渡さなけば5行分が表示される。
 
 ```python
@@ -167,7 +192,7 @@ df.head(3)
 header_list = df.columns.values
 ```
 
-行数・列数を表示。関数ではない。
+行数・列数をタプルで表示。関数ではない。
 
 ```python
 df.shape
@@ -181,8 +206,25 @@ df.dtypes
 
 特定の列だけに絞りたいときは列名を指定する。
 
+1列だけ指定するとSeriesが返ってくる。
+
 ```python
 df['列名1']
+
+df['Age']
+```
+
+辞書型を指定するように列名をドットで指定してもよい。
+
+```python
+df.列名1
+
+df.Age
+```
+
+複数列を指定するとDataFrameが返ってくる。
+
+```python
 df[['列名1', '列名2']]
 ```
 
@@ -232,6 +274,18 @@ df[df['Age'] > 20]
 df[df['kcal'] > 450]
 ```
 
+True/FalseのSeriesを作るにはapplyを使ってもいい。
+
+```python
+df.Age.apply(lambda s: s > 20)
+```
+
+これをdf[]で被せればいい。
+
+```python
+df[df.Age.apply(lambda s: s > 20)]
+```
+
 列名で絞った後にqueryで行を絞ることもできる。
 
 ```python
@@ -278,7 +332,6 @@ df["income"] = df["income"].str.split("万").str[0]
 df = df[df["establishment"].str.contains("2017/", na=False)]
 ```
 
-
 列を削除するには、drop axis=1を利用する。
 
 ```python
@@ -309,7 +362,19 @@ df.sort_values(by=["establishment"], ascending=False)
 型変換。
 
 ```python
-data["workers"] = pd.to_numeric(data["workers"])#workers列の値をnumericalに変換
+data["workers"] = pd.to_numeric(data["workers"]) #workers列の値をnumericalに変換
+```
+
+各行（axis=1）に対する操作はapplyを使う。
+
+```python
+df.apply(lambda row: sum(row), axis=1)
+```
+
+DataFrameから列を取り出してSeriesにしてから、applyを使うと便利。
+
+```python
+df['列名'].apply(lambda row: row*2, axis=1)
 ```
 
 列を追加するにはassignを使う。
@@ -328,6 +393,31 @@ df.assign(
 df.assign(
   IsChild = (df['Age'] < 20).astype(int)
 )
+```
+
+assignは関数を受け取ることもできるのでlambdaを使うと便利。
+lambdaの仮引数はDataFrame。
+
+```python
+df.assign(
+  round_A=lambda df: df.A.round(), # 四捨五入
+  round_B=lambda df: df.B.round(), # 四捨五入
+  total=lambda df: df.apply(lambda row: sum(row), axis=1) # A-Eの和
+)
+```
+
+戻り値のDataFrameからさらに列名を変更する。
+
+```python
+df.assign(
+  round_A=lambda df: df.A.round(), # 四捨五入
+  round_B=lambda df: df.B.round(), # 四捨五入
+  total=lambda df: df.apply(lambda row: sum(row), axis=1) # A-Eの和
+)[[ 'round_A', 'round_B', 'total']].rename(columns={
+    'round_A': 'id',
+    'round_B': 'key',
+    'total': 'value'
+})
 ```
 
 連結する。
@@ -355,7 +445,7 @@ display(result_df)
 折れ線グラフ
 
 ```python
-df.plot(y=['temperature', 'temperature_rolling_mean', 'temperature_pct_change'], figsize=(16,4), alpha=0.5) 
+df.plot(y=['temperature', 'temperature_rolling_mean', 'temperature_pct_change'], figsize=(16,4), alpha=0.5)
 plt.title('気温変化に関する図')
 ```
 
@@ -365,10 +455,8 @@ plt.title('気温変化に関する図')
 df.plot(kind='hist', y='sales' , bins=10, figsize=(16,4), alpha=0.5)
 ```
 
-
 [//]:# (@@@)
 # テーブル表示
-
 
 ## jupyter-notebook
 
@@ -380,6 +468,18 @@ pyenvでanacondaを入れると一緒に入ってくる。
 
 ```bash
 conda install -c conda-forge jupyter_contrib_nbextensions
+```
+
+ipywidgetsをインストール
+
+```bash
+conda install -c conda-forge ipywidgets
+```
+
+plotlyをinstall
+
+```bash
+pip install plotly
 ```
 
 設定
@@ -400,7 +500,6 @@ target = 'test'
 !ansible -m ping {target}
 ```
 
-
 ## tabulate.py
 
 ファイル一つでいいのでお気に入り。
@@ -412,7 +511,6 @@ target = 'test'
 これも良い。
 
 <https://pypi.org/project/PrettyTable/>
-
 
 [//]:# (@@@)
 # pygments
