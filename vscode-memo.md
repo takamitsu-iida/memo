@@ -21,6 +21,16 @@ Visual Studio Codeの設定メモ。
 - final-newline
 - Excel Viewer
 
+## 拡張機能（Docker）
+
+これ、macだと超便利。
+
+- Docker
+
+## 拡張機能（Azure）
+
+- Azure Repos
+
 ## 拡張機能（JavaScript）
 
 - ESLint
@@ -35,11 +45,9 @@ Visual Studio Codeの設定メモ。
 
 - YAML
 
-## 拡張機能（なくてもいいかも）
+## 拡張機能（MarkDown）
 
-- Angular Material snippets
-- Angular UI Bootstrap Snippets
-- Jasmine code snippets
+- markdownlint
 
 ## インストールされている拡張機能を確認する方法
 
@@ -67,7 +75,7 @@ wholroyd.jinja
 ## 頻繁に使うキー
 
 - ctrl-shift-p コマンド入力
-- ctrl-@ コマンドプロンプト
+- ctrl-shift-@ コマンドプロンプト
 - ctrl-b サイドメニューを表示する、隠す
 
 <BR>
@@ -94,7 +102,7 @@ wholroyd.jinja
 
 ## 基本設定
 
-ファイル→基本設定→設定
+Code→基本設定→設定
 
 ```js
 {
@@ -139,10 +147,6 @@ wholroyd.jinja
     "eslint.enable": true,
     "eslint.options": {
         "rules": {
-            "quotes": [
-                2,
-                "single"
-            ],
             "linebreak-style": [
                 2,
                 "unix"
@@ -213,14 +217,14 @@ wholroyd.jinja
     // YAML
     "[yaml]": {
         "editor.tabSize": 2,
-        "editor.detectIndentation": true
+        "editor.detectIndentation": false
     },
 
     // vue
     "[vue]": {
         "editor.tabSize": 2
     },
-
+    "team.showWelcomeMessage": false,
 }
 ```
 
