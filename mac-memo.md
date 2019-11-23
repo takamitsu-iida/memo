@@ -361,7 +361,7 @@ Host 172.20.0.24
 
 環境変数 VAGRANT_HOME を設定しておくか、未指定時は```$HOME/.vagrant.d```にインストールされる。
 
-## インストールしたバージョンの確認。
+## インストールしたバージョンの確認
 
 ```bash
 iida-macbook-pro:bin iida$ vagrant --version
