@@ -99,6 +99,14 @@ brew tap caskroom/fonts
 brew cask install font-ricty-diminished
 ```
 
+postmanをインストールする。
+
+```bash
+ brew cask install postman
+```
+
+npmで必要なものをインストールする。
+
 ```bash
 npm i -g http-server
 npm i -g @vue/cli
