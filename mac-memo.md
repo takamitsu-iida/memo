@@ -111,6 +111,17 @@ ngrokをインストールする。
 brew cask install ngrok
 ```
 
+GoogleかGithubのアカウントでログインして、
+ダッシュボード<https://dashboard.ngrok.com/get-started>で認証トークンを確認する。
+
+トークンを保存する。
+
+```bash
+iida-macbook-pro:~ iida$ ngrok authtoken __token__
+Authtoken saved to configuration file: /Users/iida/.ngrok2/ngrok.yml
+iida-macbook-pro:~ iida$
+```
+
 npmで必要なものをインストールする。
 
 ```bash
