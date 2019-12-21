@@ -102,7 +102,13 @@ brew cask install font-ricty-diminished
 postmanをインストールする。
 
 ```bash
- brew cask install postman
+brew cask install postman
+```
+
+ngrokをインストールする。
+
+```bash
+brew cask install ngrok
 ```
 
 npmで必要なものをインストールする。
@@ -160,6 +166,14 @@ pip install tqdm
 pip install yapf
 pip install ntfy
 ```
+
+住所と緯度経度を処理するモジュール。
+
+```bash
+pip install geopy
+pip install timezonefinder
+```
+
 
 ## dockerのインストール
 
