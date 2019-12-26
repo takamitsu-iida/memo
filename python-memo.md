@@ -811,7 +811,13 @@ flake8 --config=.flake8 lib\---.py
 
 秀逸。45分で解説してる。
 
+<https://c-bata.link/webframework-in-python/>
+
 <https://youtube.com/watch?v=S-InxJA5NOg>
+
+<https://kobin.readthedocs.io/ja/latest/>
+
+<https://github.com/kobinpy/kobin>
 
 
 [//]:# (@@@)
