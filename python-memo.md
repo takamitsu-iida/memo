@@ -147,7 +147,7 @@ exclude_nodes =  ["JSRNW792", "JSSNW247", "JSSNW248"]
 try:
   expect = 0
   value = df.query('node_id in @exclude_nodes').shape[0]
-  
+
   assert value == expect, '期待する値[{}], 入力値[{}]'.format(expect, value)
 
 except AssertionError as e:
@@ -806,6 +806,13 @@ max-complexity = 10
 ```bash
 flake8 --config=.flake8 lib\---.py
 ```
+
+# 基礎から学ぶWebアプリケーションフレームワークの作り方
+
+秀逸。45分で解説してる。
+
+<https://youtube.com/watch?v=S-InxJA5NOg>
+
 
 [//]:# (@@@)
 # bottle
