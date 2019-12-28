@@ -819,6 +819,45 @@ flake8 --config=.flake8 lib\---.py
 
 <https://github.com/kobinpy/kobin>
 
+# flask
+
+flaskではdebug=Trueにすると初期化処理が２度走る。
+use_reloader=Trueの場合はファイルを更新するたびにスクリプト全体が再起動する。
+
+１度しか実行したくない初期化処理が繰り返し実行されるのを防ぐには、環境変数 "WERKZEUG_RUN_MAIN"をチェックする。
+
+参考リンク
+
+<https://stackoverflow.com/questions/9449101/how-to-stop-flask-from-initialising-twice-in-debug-mode>
+
+```python
+from flask import Flask, request
+
+logger = logging.getLogger(__name__)
+
+# solution to avoid multiple initialization
+# see, https://stackoverflow.com/questions/9449101/how-to-stop-flask-from-initialising-twice-in-debug-mode
+if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
+  logger.info("skip initialization")
+else:
+  logger.info("initialize first time")
+
+app = Flask(__name__)
+
+@app.route("/", methods=['POST'])
+def webhook():
+  # get the json data
+  json_data = request.get_json()
+
+  return "Success!"
+
+@app.teardown_appcontext
+def teardown():
+  logger.info("flask terminated")
+
+if __name__ == '__main__':
+  app.run(host='127.0.0.1', port=PORT, use_reloader=True, debug=True)
+```
 
 [//]:# (@@@)
 # bottle
