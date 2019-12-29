@@ -178,6 +178,14 @@ pip install yapf
 pip install ntfy
 ```
 
+web関係。
+
+```bash
+pip install gunicorn
+pip install flask
+pip install bottle
+```
+
 住所と緯度経度を処理するモジュール。
 
 ```bash
