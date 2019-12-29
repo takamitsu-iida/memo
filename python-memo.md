@@ -1,6 +1,7 @@
 # python関連のメモ書き
 
 [//]:# (@@@)
+
 ## jupyter notebook
 
 anacondaに入ってる。
@@ -157,6 +158,7 @@ else:
 ```
 
 [//]:# (@@@)
+
 ## pandas
 
 pandasのDataFrameを扱うときは、列で思考すること。
@@ -456,6 +458,7 @@ df.plot(kind='hist', y='sales' , bins=10, figsize=(16,4), alpha=0.5)
 ```
 
 [//]:# (@@@)
+
 # テーブル表示
 
 ## jupyter-notebook
@@ -513,6 +516,7 @@ target = 'test'
 <https://pypi.org/project/PrettyTable/>
 
 [//]:# (@@@)
+
 # pygments
 
 ```bash
@@ -527,6 +531,7 @@ C:\TMP\prompt>
 ```
 
 [//]:# (@@@)
+
 prompt_toolkit
 
 ```bash
@@ -588,6 +593,7 @@ db.purge()
 ```
 
 [//]:# (@@@)
+
 # デコレータの引数を元に関数を動的に呼び出す
 
 @を付けた関数は、定義と同時にデコレータ関数が走るので、
@@ -666,6 +672,7 @@ if __name__ == '__main__':
 ```
 
 [//]:# (@@@)
+
 # yapf
 
 ```bash
@@ -681,6 +688,7 @@ vs codeでの設置
 ```
 
 [//]:# (@@@)
+
 # pylint
 
 ```bash
@@ -692,6 +700,7 @@ pylint --generate-rcfile > .pylintrc
 ```
 
 [//]:# (@@@)
+
 # print
 
 ```python
@@ -716,6 +725,7 @@ print("test", file=sys.stdout)
 ```
 
 [//]:# (@@@)
+
 # excel
 
 ```python
@@ -726,6 +736,7 @@ pip install xlrd
 <http://www.python-izm.com/contents/external/xlrd.shtml>
 
 [//]:# (@@@)
+
 # tqdm
 
 コンソールに進捗バーを表示する
@@ -746,6 +757,7 @@ for item in tqdm(items):
 ```
 
 [//]:# (@@@)
+
 # JSONデータのファイル保存
 
 ```python
@@ -773,6 +785,7 @@ def load_json(file_path):
 ```
 
 [//]:# (@@@)
+
 # difflibの使い方
 
 ```python
@@ -791,6 +804,7 @@ print delta
 ```
 
 [//]:# (@@@)
+
 # flake8
 
 C:\HOME\iida\.flake8
@@ -860,6 +874,7 @@ if __name__ == '__main__':
 ```
 
 [//]:# (@@@)
+
 # bottle
 
 ```python
@@ -992,6 +1007,7 @@ def data_customs_velcoun():
 ```
 
 [//]:# (@@@)
+
 # tailerモジュール
 
 tailコマンドっぽいやつ
@@ -1003,6 +1019,7 @@ tailer.tail(open('test.txt'), 3)
 ```
 
 [//]:# (@@@)
+
 # WebSocket
 
 JavaScript側
@@ -1018,6 +1035,7 @@ JavaScript側
  close 切断
 
 [//]:# (@@@)
+
 # pipコマンドの使い方
 
 <http://www.task-notes.com/entry/20150810/1439175600>
@@ -1041,6 +1059,7 @@ pip uninstall <pandas>
 ```
 
 [//]:# (@@@)
+
 # bottle-websocket
 
 bottle-0.12.9
@@ -1070,6 +1089,7 @@ Successfully installed bottle-0.12.9 bottle-websocket-0.2.9 gevent-1.1.0 gevent-
 ```
 
 [//]:# (@@@)
+
 # リストのフラット化
 
 [ [1,2], [3,4], [5,6] ]
@@ -1088,6 +1108,7 @@ d.hatena.ne.jp/xef/20121027/p2
 ```
 
 [//]:# (@@@)
+
 # ログ解析ツール
 
 クロージャとyieldを使うと楽
@@ -1095,6 +1116,7 @@ d.hatena.ne.jp/xef/20121027/p2
 <http://t2y.hatenablog.jp/entry/20101124/1290534464>
 
 [//]:# (@@@)
+
 # クロージャ
 
 Pythonにおけるクロージャは、関数を返す関数
@@ -1105,11 +1127,13 @@ Pythonにおけるクロージャは、関数を返す関数
 <http://www.lifewithpython.com/2014/09/python-use-closures.html>
 
 [//]:# (@@@)
+
 # yield
 
 イテレータを抱えた関数を作るためのもの
 
 [//]:# (@@@)
+
 # bottleとMongoDB
 
 <https://myadventuresincoding.wordpress.com/2011/01/02/creating-a-rest-api-in-python-using-bottle-and-mongodb/>
@@ -1147,6 +1171,7 @@ run(host='localhost', port=8080)
 ```
 
 [//]:# (@@@)
+
 # bottleとgeventを組み合わせて非同期化する
 
 <http://hamukazu.com/2016/01/04/bottle_and_gevent/>
@@ -1156,6 +1181,7 @@ pip install gevent
 ```
 
 [//]:# (@@@)
+
 # HTML Kickstart
 
 <http://www.99lime.com/>
@@ -1203,6 +1229,7 @@ $.ajax({
 ```
 
 [//]:# (@@@)
+
 # IPアドレスの操作にはnetaddrモジュールが便利
 
 ```bash
@@ -1212,6 +1239,7 @@ pip install netaddr
 <http://momijiame.tumblr.com/post/50497347245/python-%E3%81%A7-ip-mac-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E6%89%B1%E3%81%86%E3%81%AA%E3%82%89-netaddr-%E3%81%8C%E8%B6%85%E4%BE%BF%E5%88%A9>
 
 [//]:# (@@@)
+
 # bottle
 
 使い方
