@@ -211,6 +211,47 @@ ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-comple
 
 ~/Library/Containers/com.docker.docker/
 
+## redisのインストール
+
+何かと使うのでdockerを立ち上げるよりmac本体に入れておいた方が良さそう。
+
+```bash
+brew install redis
+```
+
+`/usr/local/bin/redis-server`で起動。
+
+```bash
+iida-macbook-pro:memo iida$ redis-server
+69027:C 02 Jan 2020 23:59:20.027 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+69027:C 02 Jan 2020 23:59:20.027 # Redis version=5.0.7, bits=64, commit=00000000, modified=0, pid=69027, just started
+69027:C 02 Jan 2020 23:59:20.027 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+                _._
+           _.-``__ ''-._
+      _.-``    `.  `_.  ''-._           Redis 5.0.7 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 69027
+  `-._    `-._  `-./  _.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |           http://redis.io
+  `-._    `-._`-.__.-'_.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |
+  `-._    `-._`-.__.-'_.-'    _.-'
+      `-._    `-.__.-'    _.-'
+          `-._        _.-'
+              `-.__.-'
+
+69027:M 02 Jan 2020 23:59:20.032 # Server initialized
+69027:M 02 Jan 2020 23:59:20.032 * Ready to accept connections
+```
+
+サーバはフォアグラウンドで走るので`Ctrl-C`で止める。
+
+Python用のモジュールは`pip install redis`でインストールする。
+
 ## ansibleのインストール
 
 macにansibleを入れる
