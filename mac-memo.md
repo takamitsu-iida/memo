@@ -176,11 +176,13 @@ pip install tinydb
 pip install tqdm
 pip install yapf
 pip install ntfy
+pip install pysnooper
 ```
 
 web関係。
 
 ```bash
+pip install gevent
 pip install gunicorn
 pip install flask
 pip install bottle
