@@ -131,6 +131,10 @@ npm i -g eslint
 npm i -g eslint-config-google
 ```
 
+```bash
+npm i -g webpack
+```
+
 ## pyenv
 
 ```bash
