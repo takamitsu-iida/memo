@@ -22,7 +22,7 @@ fi
 
 # .bashrc
 
-2019年1月時点はこれ。
+2020年1月時点はこれ。
 
 ```bash
 # alias
@@ -42,7 +42,7 @@ eval "$(pyenv init -)"
 pyenv global 3.6.4
 
 # nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/.nodebrew/current/bin:./node_modules/.bin:$PATH
 
 # ansible
 export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.158.20"'
