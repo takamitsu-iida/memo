@@ -2,6 +2,14 @@
 
 [//]:# (@@@)
 
+## IPythonデータサイエンスクックブック
+
+英語版は無償で読める。
+
+<https://ipython-books.github.io/>
+
+[//]:# (@@@)
+
 ## jupyter notebook
 
 anacondaに入ってる。
