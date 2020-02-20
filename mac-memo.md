@@ -181,6 +181,7 @@ pip install tqdm
 pip install yapf
 pip install ntfy
 pip install pysnooper
+pip install nornir
 ```
 
 web関係。
