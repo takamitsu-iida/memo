@@ -92,6 +92,12 @@ brew install readline
 brew install wget
 ```
 
+diagramsを入れるならgraphvizを入れる。
+
+```bash
+brew install graphviz
+```
+
 追加のフォントを入れる。matplotlibで日本語表示をするため。
 
 ```bash
@@ -182,6 +188,7 @@ pip install yapf
 pip install ntfy
 pip install pysnooper
 pip install nornir
+pip install diagrams
 ```
 
 web関係。
