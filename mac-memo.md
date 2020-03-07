@@ -48,6 +48,62 @@ export PATH=$HOME/.nodebrew/current/bin:./node_modules/.bin:$PATH
 export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.158.20"'
 ```
 
+# .zshrc
+
+2020年3月時点はこれ。.zprofileの中身は空っぽ。
+
+```bash
+# alias
+alias ls='ls -F'
+
+# zsh-completion
+# brew install zsh-completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# You may also need to force rebuild `zcompdump`:
+# rm -f ~/.zcompdump; compinit
+
+
+# $HOME/binを最後に通す
+export PATH=$PATH:$HOME/bin
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# ansible
+# export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.158.20"'
+
+# proxy
+# . ~/.proxyrc
+# --PROXY--
+
+# # pyenv
+# export PYENV_ROOT=$HOME/.pyenv
+# export PATH=$PYENV_ROOT/bin:$PATH
+# export PYTHON_CONFIGURE_OPTS="--enable-framework"
+# eval "$(pyenv init -)"
+
+# pyenv versionsでインストールされているバージョンを確認して指定する
+# pyenv global system
+# pyenv global 3.6.4
+
+# --PYENV--
+# BEGIN ANSIBLE MANAGED BLOCK
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+eval "$(pyenv init -)"
+# END ANSIBLE MANAGED BLOCK
+
+# --PYENV_VERSION--
+pyenv global 3.6.5
+```
+
 # macOS Mojave 10.14にしてからの作業
 
 ヘッダファイルをインストールする。
