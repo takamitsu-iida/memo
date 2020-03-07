@@ -78,6 +78,7 @@ brew install openssl
 brew install nodebrew
 brew install cdrtools
 brew install bash-completion
+brew install zsh-completions
 brew install tree
 brew install telnet
 brew install tnftp

@@ -87,15 +87,17 @@
 
 ;; フォントの設定
 ;; 出典：http://sakito.jp/emacs/emacs23.html
-(create-fontset-from-ascii-font "Menlo-14:weight=normal:slant=normal" nil "menlokakugo")
-(set-fontset-font "fontset-menlokakugo"
-		  'unicode
-		  (font-spec :family "Hiragino Kaku Gothic ProN" :size 14)
-		  nil
-		  'append)
-(add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
 
 (if window-system (progn
+
+  (create-fontset-from-ascii-font "Menlo-14:weight=normal:slant=normal" nil "menlokakugo")
+  (set-fontset-font "fontset-menlokakugo"
+		    'unicode
+		    (font-spec :family "Hiragino Kaku Gothic ProN" :size 14)
+		    nil
+		    'append)
+  (add-to-list 'default-frame-alist '(font . "fontset-menlokakugo"))
+
   ;; default color
   (add-to-list 'default-frame-alist '(cursor-color . "SlateBlue2"))
   (add-to-list 'default-frame-alist '(mouse-color . "SlateBlue2"))
