@@ -139,14 +139,22 @@ brew install tree
 brew install telnet
 brew install tnftp
 brew install autoconf
-brew install git
+brew install automake
+brew install libtool
 brew install jq
+brew install git
 brew install mas  # mas-cli
 brew install nodebrew
 # sshpassは直接導入できないのでインストールスクリプトを指定する
 brew install https://git.io/sshpass.rb
 brew install readline
 brew install wget
+```
+
+awsを使うならawscliを入れる。
+
+```
+brew install awscli
 ```
 
 diagramsを入れるならgraphvizを入れる。
