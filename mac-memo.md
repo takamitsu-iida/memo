@@ -254,6 +254,8 @@ pip install ntfy
 pip install pysnooper
 pip install nornir
 pip install diagrams
+pip install xmltodict
+pip install pyyang
 ```
 
 web関係。
@@ -271,6 +273,8 @@ pip install bottle
 pip install geopy
 pip install timezonefinder
 ```
+
+
 
 ## dockerのインストール
 
