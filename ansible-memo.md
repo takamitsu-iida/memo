@@ -1,4 +1,4 @@
-# Ansible実験場
+# Ansibleメモ
 
 ここではansibleを使う上での実験的な内容を記します。
 
@@ -1389,15 +1389,3 @@ IOSXE
 
 <https://github.com/vbotka/ansible-examples>
 
-<br>
-
-## PoleMarch
-
-AnsibleのGUIツール。
-<https://polemarch.org/>
-
-<br>
-
-# Decks Test
-
-- [reveal.jsのテスト](decks/index.html)
