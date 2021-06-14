@@ -1305,7 +1305,7 @@ failedでも次の処理に進めたいときはignore_errorsを指定する。
 pipを使ってPythonのモジュールとしてインストールすればよい。
 
 ```bash
-pip install --proxy=http://user:pass@rep.proxy.nic.fujitsu.com:8080 ansible
+pip install --proxy=http://user:pass@proxy.server:8080 ansible
 ```
 
 開発版をインストールするなら、インターネットに直接つないでからこれ。
@@ -1327,11 +1327,15 @@ TextFSMを使った`parse_cli_textfsm`の方が便利。
 sudo pip install textfsm
 ```
 
-ntc-templateはgithubからダウンロードする。
+ntc-templatesはgithubからダウンロードする。
 
 ```bash
 git clone https://github.com/networktocode/ntc-templates.git
 ```
+
+TextFSMを使うなら、ここの解説を一読した方がいい。
+<https://pyneng.readthedocs.io/en/latest/book/21_textfsm/index.html#>
+
 
 <br><br>
 
