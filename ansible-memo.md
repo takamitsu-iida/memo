@@ -1339,6 +1339,27 @@ TextFSMを使うなら、ここの解説を一読した方がいい。
 
 <br><br>
 
+# 対象ノードが多数あるときにはset_factの書き方に注意する
+
+対象ノードが多数あるとき、この書き方で`set_fact`をすると処理が重く、コネクションエラーが発生する。
+
+```yml
+- set_fact:
+```
+
+この書き方であれあ処理が軽い。
+
+```yml
+- local_action:
+    module: set_fact
+```
+
+Wiresharkで通信をみるとどっちの書き方でも変わらないので、単に処理負荷の問題のよう。
+対象ノードが多数あるときは`set_fact`の書き方に気をつけるべき。
+
+<br><br>
+
+
 # モジュールを作る
 
 Developing Modulesの和訳
@@ -1392,4 +1413,3 @@ IOSXE
 ## プレイブックの例たくさん
 
 <https://github.com/vbotka/ansible-examples>
-
