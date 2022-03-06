@@ -1,38 +1,18 @@
 # telnet URL
 
-`telnet://`のリンクをクリックしたときターミナル.appで開くようにする。
+`telnet://`のリンクをクリックしたときにitermを開くようにするには。
 
-リカバリーモードでMACを起動し直す。
+このファイルをいじればいいらしい。
 
-再起動してアップルのロゴが出ているうちに、CMDキー + rを押す。
+`~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist`
 
-GUIが起動したら、Utilities -> Terminal でターミナルを起動する。
+中身がわからないので、GUIで触れるアプリを使うと楽。
 
-```bash
-csrutil disable
-reboot
-```
+RCDefaultAppをインストールすると、デフォルトで起動するアプリを簡単に設定できる。
 
-/をRead Writeでマウントしなおす。
+https://www.rubicode.com/Software/RCDefaultApp/
 
-```bash
-sudo mount -uw /
-```
-
-/usr/local/bin/telnetを/usr/binにリンクする。
-
-```bash
-sudo ln -s /usr/local/bin/telnet /usr/bin/
-```
-
-再びリカバリーモードで起動し直す。
-
-GUIが起動したら、Utilities -> Terminal でターミナルを起動する。
-
-```bash
-csrutil enable
-reboot
-```
+https://github.com/Lord-Kamina/SwiftDefaultApps
 
 
 # .bash_profile
