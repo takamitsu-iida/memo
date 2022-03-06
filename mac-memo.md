@@ -1,3 +1,39 @@
+# telnet URL
+
+`telnet://`のリンクをクリックしたときターミナル.appで開くようにする。
+
+リカバリーモードでMACを起動し直す。
+
+再起動してアップルのロゴが出ているうちに、CMDキー + rを押す。
+
+GUIが起動したら、Utilities -> Terminal でターミナルを起動する。
+
+```bash
+csrutil disable
+reboot
+```
+
+/をRead Writeでマウントしなおす。
+
+```bash
+sudo mount -uw /
+```
+
+/usr/local/bin/telnetを/usr/binにリンクする。
+
+```bash
+sudo ln -s /usr/local/bin/telnet /usr/bin/
+```
+
+再びリカバリーモードで起動し直す。
+
+GUIが起動したら、Utilities -> Terminal でターミナルを起動する。
+
+```bash
+csrutil enable
+reboot
+```
+
 
 # .bash_profile
 
