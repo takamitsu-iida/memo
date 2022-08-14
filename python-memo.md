@@ -685,6 +685,19 @@ if __name__ == '__main__':
 
 [//]:# (@@@)
 
+# vscodeでのライブラリの補完
+
+pipでインストールしたライブラリで補完を効かせるには、settings.jsonに設定の追加が必要。
+
+`pip install 適当なライブラリ名` を打ち込めばインストール済みのライブラリのパスがわかる。
+そのパスを`python.autoComplete.extraPaths`に追加する。
+
+```js
+"python.autoComplete.extraPaths": ["~/.local/lib/python3.8/site-packages/"],
+```
+
+[//]:# (@@@)
+
 # yapf
 
 ```bash
