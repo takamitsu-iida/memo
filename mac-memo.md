@@ -1,3 +1,19 @@
+# telnet URL
+
+`telnet://`のリンクをクリックしたときにitermを開くようにするには。
+
+このファイルをいじればいいらしい。
+
+`~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist`
+
+中身がわからないので、GUIで触れるアプリを使うと楽。
+
+RCDefaultAppをインストールすると、デフォルトで起動するアプリを簡単に設定できる。
+
+https://www.rubicode.com/Software/RCDefaultApp/
+
+https://github.com/Lord-Kamina/SwiftDefaultApps
+
 
 # .bash_profile
 
