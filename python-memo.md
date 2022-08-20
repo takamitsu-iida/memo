@@ -2,6 +2,28 @@
 
 [//]:# (@@@)
 
+<br><br>
+
+## WSLでのPython実行環境整備
+
+```bash
+$ sudo apt install python3-venv python3-pip
+```
+
+```bash
+$ python3 -m venv .venv
+```
+
+```bash
+$ source .venv/bin/activate
+```
+
+```bash
+$ deactivate
+```
+
+<br><br>
+
 ## IPythonデータサイエンスクックブック
 
 英語版は無償で読める。
