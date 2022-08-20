@@ -6,7 +6,10 @@
 
 ## WSLでのPython実行環境整備
 
+### venvをインストール
+
 ```bash
+$ sudo apt update
 $ sudo apt install python3-venv python3-pip
 ```
 
@@ -20,6 +23,24 @@ $ source .venv/bin/activate
 
 ```bash
 $ deactivate
+```
+
+### direnvをインストール
+
+```bash
+$ sudo apt update
+$ sudo apt install -y direnv
+```
+
+~/.bashrcに以下を追記する。
+
+```text
+## direnv
+eval "$(direnv hook bash)"
+```
+
+```bashrc
+$ direnv edit .
 ```
 
 <br><br>
