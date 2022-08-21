@@ -55,7 +55,23 @@ export EDITOR=vi
 $ direnv edit .
 ```
 
-`.envrc`というファイルが開くので、そのまま保存する。
+`.envrc`というファイルが開くので以下の2行を追加して保存する。
+
+```text
+source .venv/bin/activate
+unset PS1
+```
+
+もしくは
+
+```bash
+echo 'source .venv/bin/activate' > .envrc
+echo 'unset PS1' > .envrc
+direnv allow
+```
+
+としてもよい。
+
 
 <br><br>
 
