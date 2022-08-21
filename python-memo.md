@@ -13,19 +13,30 @@ $ sudo apt update
 $ sudo apt install python3-venv python3-pip
 ```
 
+ディレクトリに移動したのち、
+
 ```bash
 $ python3 -m venv .venv
 ```
+
+を実行すると、`.venv`ディレクトリ以下に新たなpython環境ができあがる。
+この環境を利用するにはアクティベートする必要がある。
 
 ```bash
 $ source .venv/bin/activate
 ```
 
+環境から抜けるにはデアクティベートする。
+
 ```bash
 $ deactivate
 ```
 
+Visual Studio Codeは開いたディレクトリに`.venv`というフォルダがあれば、その環境を優先的に利用してくれる。
+
 ### direnvをインストール
+
+venvを手動でアクティベート・デアクティベートするのは面倒なので、ディレクトリに移動した瞬間に自動で環境を切り替えるようにする。
 
 ```bash
 $ sudo apt update
@@ -37,11 +48,14 @@ $ sudo apt install -y direnv
 ```text
 ## direnv
 eval "$(direnv hook bash)"
+export EDITOR=vi
 ```
 
 ```bashrc
 $ direnv edit .
 ```
+
+`.envrc`というファイルが開くので、そのまま保存する。
 
 <br><br>
 
