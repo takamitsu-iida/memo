@@ -55,7 +55,7 @@ go version go1.18.3 linux/amd64
 最初から入れておくとよい。
 
 ```bash
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt update && sudo apt upgrade -y
 sudo apt autoremove -y
-sudo apt-get install gcc -y
+sudo apt install gcc -y
 ```
