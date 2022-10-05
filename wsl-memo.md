@@ -68,7 +68,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # プロキシ設定
 
 認証プロキシのPACファイルはHTTPで入手しなければならない。
-なので、これは動かない。
+ブラウザにこのような設定をしても機能しないので要注意。
 
 ```text
 file:///C:/SYNC/HOME/auth.pac
