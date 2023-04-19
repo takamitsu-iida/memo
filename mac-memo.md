@@ -496,10 +496,22 @@ Already downloaded: /Users/iida/Library/Caches/Homebrew/downloads/0f62846e0affb7
 🍺  emacs-mac was successfully installed!
 ```
 
+# マウス設定
+
+ナチュラルなスクロール のチェックを外す。
+
+# キーボード設定
+
+リピート速度を最速に、リピート入力認識までの時間は最短に。
+
 # キーボード設定　Ctrl-Spaceの解除
 
 Ctrl-Spaceのキーバンドは日本語入力に持って行かれるので、emacsのマークセットができなくなってしまう。
-キーボードの設定でCtrl-Spaceを利用しているチェックボックスを外しておくこと。
+
+キーボード→キーボードショートカット→入力ソース
+
+Ctrl-Spaceを利用しているチェックボックスを外しておく。
+
 
 # キーボード設定　バックスラッシュの入力
 
