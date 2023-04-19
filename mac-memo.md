@@ -1,3 +1,36 @@
+# Visual Studio Code
+
+macosにVisual Studio Codeをインストールしても、ターミナルの`code`コマンドはインストールされない。
+
+コマンドパレット（⇧⌘P）を開いて `shell command` と打ち込むと
+
+`シェルコマンド : PATH内にcode-insidersコマンドをインストールします`
+
+が出てくるので、これを実行すると /usr/local/bin/code がインストールされる。
+
+
+# telnet
+
+telnetコマンドは初期状態ではインストールされていないので、追加でする必要がある。
+
+```bash
+brew install telnet
+```
+
+# .telnetrc
+
+telnetコマンドをインストールしたら、ついでに.telnetrcも作成しておく。
+
+これを作っておかないと `No default realm defined for Kerberos` というメッセージが接続のたびに表示されるので。
+
+`vi ~/.telnetrc`
+
+以下の内容を書き込む。
+
+```
+default unset autologin
+```
+
 # telnet URL
 
 `telnet://`のリンクをクリックしたときにitermを開くようにするには。
