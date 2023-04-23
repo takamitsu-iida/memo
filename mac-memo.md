@@ -1,3 +1,12 @@
+# Mac miniのスリープ禁止設定
+
+サーバとして利用するにはスリープしない設定に変更しなければならない。
+
+ディスプレイ設定の一番下、詳細設定をクリック。
+
+「電源アダプタ接続時にディスプレイがオフになっても自動でスリープさせない」をチェックする。
+
+
 # Visual Studio Code
 
 macosにVisual Studio Codeをインストールしても、ターミナルの`code`コマンドはインストールされない。
@@ -48,7 +57,7 @@ https://www.rubicode.com/Software/RCDefaultApp/
 https://github.com/Lord-Kamina/SwiftDefaultApps
 
 
-# .bash_profile
+# .bash_profile (obsoleted)
 
 .bash_profileはログイン時に実行され主に環境変数を設定する。
 
@@ -69,7 +78,7 @@ if [ -f ~/.bashrc ]; then
 fi
 ```
 
-# .bashrc
+# .bashrc (obsoleted)
 
 2020年1月時点はこれ。
 
@@ -99,6 +108,8 @@ export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.1
 
 # .zshrc
 
+デフォルトのシェルがbashからzshに変わったため、現行機で使っている設定は.zshrc
+
 2020年3月時点はこれ。.zprofileの中身は空っぽ。
 
 ```bash
@@ -116,7 +127,6 @@ fi
 
 # You may also need to force rebuild `zcompdump`:
 # rm -f ~/.zcompdump; compinit
-
 
 # $HOME/binを最後に通す
 export PATH=$PATH:$HOME/bin
