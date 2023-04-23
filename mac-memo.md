@@ -110,14 +110,32 @@ export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.1
 
 デフォルトのシェルがbashからzshに変わったため、現行機で使っている設定は.zshrc
 
-2020年3月時点はこれ。.zprofileの中身は空っぽ。
+2023年4月時点はこれ。.zprofileは使っていない。
 
 ```bash
 # alias
 alias ls='ls -F'
 
-# zsh-completion
+#
+# homebrew
+#
+typeset -U path PATH
+
+path=(
+  /opt/homebrew/bin(N-/)
+  /opt/homebrew/sbin(N-/)
+  /usr/bin
+  /usr/sbin
+  /bin
+  /sbin
+  /usr/local/bin(N-/)
+  /usr/local/sbin(N-/)
+  /Library/Apple/usr/bin
+)
+
+#
 # brew install zsh-completions
+#
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
@@ -153,14 +171,21 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # --PYENV--
 # BEGIN ANSIBLE MANAGED BLOCK
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-eval "$(pyenv init -)"
+# export PYENV_ROOT=$HOME/.pyenv
+# export PATH=$PYENV_ROOT/bin:$PATH
+# export PYTHON_CONFIGURE_OPTS="--enable-framework"
+# eval "$(pyenv init -)"
 # END ANSIBLE MANAGED BLOCK
 
 # --PYENV_VERSION--
-pyenv global 3.6.5
+# pyenv global 3.6.5
+
+
+#
+# enable ctrl-p ctrl-n ctrl-r
+#
+bindkey -e
+
 ```
 
 # macOS Mojave 10.14にしてからの作業
