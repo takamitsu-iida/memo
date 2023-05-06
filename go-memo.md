@@ -59,3 +59,12 @@ sudo apt update && sudo apt upgrade -y
 sudo apt autoremove -y
 sudo apt install gcc -y
 ```
+
+
+## macの場合
+
+```
+brew install go
+brew install protobuf
+brew install protoc-gen-go
+```
