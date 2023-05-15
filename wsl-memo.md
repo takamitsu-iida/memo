@@ -1,5 +1,29 @@
 # WSLメモ
 
+
+<br><br>
+
+## /tmpをキレイにする
+
+WSLを使っていると/tmpに大量のファイルが残る。
+
+```
+sudo apt install tmpreaper
+sudo vi /etc/tmpreaper.conf
+```
+
+SHOWWARNING=true はコメント化して無効にする。
+
+TMPREAPER_DELAY='256' は'0'に変更する。
+
+TMPREAPER_TIME=7d はコメントアウトして有効にする。
+
+即時で実行するにはこうする。
+
+```
+sudo /etc/cron.daily/tmpreaper
+```
+
 <br><br>
 
 ## バックアップ
