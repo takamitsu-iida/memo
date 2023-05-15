@@ -1,3 +1,45 @@
+# Mac miniのスリープ禁止設定
+
+サーバとして利用するにはスリープしない設定に変更しなければならない。
+
+ディスプレイ設定の一番下、詳細設定をクリック。
+
+「電源アダプタ接続時にディスプレイがオフになっても自動でスリープさせない」をチェックする。
+
+
+# Visual Studio Code
+
+macosにVisual Studio Codeをインストールしても、ターミナルの`code`コマンドはインストールされない。
+
+コマンドパレット（⇧⌘P）を開いて `shell command` と打ち込むと
+
+`シェルコマンド : PATH内にcode-insidersコマンドをインストールします`
+
+が出てくるので、これを実行すると /usr/local/bin/code がインストールされる。
+
+
+# telnet
+
+telnetコマンドは初期状態ではインストールされていないので、追加でする必要がある。
+
+```bash
+brew install telnet
+```
+
+# .telnetrc
+
+telnetコマンドをインストールしたら、ついでに.telnetrcも作成しておく。
+
+これを作っておかないと `No default realm defined for Kerberos` というメッセージが接続のたびに表示されるので。
+
+`vi ~/.telnetrc`
+
+以下の内容を書き込む。
+
+```
+default unset autologin
+```
+
 # telnet URL
 
 `telnet://`のリンクをクリックしたときにitermを開くようにするには。
@@ -15,7 +57,7 @@ https://www.rubicode.com/Software/RCDefaultApp/
 https://github.com/Lord-Kamina/SwiftDefaultApps
 
 
-# .bash_profile
+# .bash_profile (obsoleted)
 
 .bash_profileはログイン時に実行され主に環境変数を設定する。
 
@@ -36,7 +78,7 @@ if [ -f ~/.bashrc ]; then
 fi
 ```
 
-# .bashrc
+# .bashrc (obsoleted)
 
 2020年1月時点はこれ。
 
@@ -66,14 +108,34 @@ export ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q bastion@10.35.1
 
 # .zshrc
 
-2020年3月時点はこれ。.zprofileの中身は空っぽ。
+デフォルトのシェルがbashからzshに変わったため、現行機で使っている設定は.zshrc
+
+2023年4月時点はこれ。.zprofileは使っていない。
 
 ```bash
 # alias
 alias ls='ls -F'
 
-# zsh-completion
+#
+# homebrew
+#
+typeset -U path PATH
+
+path=(
+  /opt/homebrew/bin(N-/)
+  /opt/homebrew/sbin(N-/)
+  /usr/bin
+  /usr/sbin
+  /bin
+  /sbin
+  /usr/local/bin(N-/)
+  /usr/local/sbin(N-/)
+  /Library/Apple/usr/bin
+)
+
+#
 # brew install zsh-completions
+#
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
@@ -83,7 +145,6 @@ fi
 
 # You may also need to force rebuild `zcompdump`:
 # rm -f ~/.zcompdump; compinit
-
 
 # $HOME/binを最後に通す
 export PATH=$PATH:$HOME/bin
@@ -110,14 +171,21 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # --PYENV--
 # BEGIN ANSIBLE MANAGED BLOCK
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-eval "$(pyenv init -)"
+# export PYENV_ROOT=$HOME/.pyenv
+# export PATH=$PYENV_ROOT/bin:$PATH
+# export PYTHON_CONFIGURE_OPTS="--enable-framework"
+# eval "$(pyenv init -)"
 # END ANSIBLE MANAGED BLOCK
 
 # --PYENV_VERSION--
-pyenv global 3.6.5
+# pyenv global 3.6.5
+
+
+#
+# enable ctrl-p ctrl-n ctrl-r
+#
+bindkey -e
+
 ```
 
 # macOS Mojave 10.14にしてからの作業
@@ -463,10 +531,22 @@ Already downloaded: /Users/iida/Library/Caches/Homebrew/downloads/0f62846e0affb7
 🍺  emacs-mac was successfully installed!
 ```
 
+# マウス設定
+
+ナチュラルなスクロール のチェックを外す。
+
+# キーボード設定
+
+リピート速度を最速に、リピート入力認識までの時間は最短に。
+
 # キーボード設定　Ctrl-Spaceの解除
 
 Ctrl-Spaceのキーバンドは日本語入力に持って行かれるので、emacsのマークセットができなくなってしまう。
-キーボードの設定でCtrl-Spaceを利用しているチェックボックスを外しておくこと。
+
+キーボード→キーボードショートカット→入力ソース
+
+Ctrl-Spaceを利用しているチェックボックスを外しておく。
+
 
 # キーボード設定　バックスラッシュの入力
 
