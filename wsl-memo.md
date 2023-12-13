@@ -1,5 +1,14 @@
 # WSLメモ
 
+<br><br>
+
+## ビープ音を止める
+
+コマンドを打ち間違えたときのビープ音がうるさいので抑止する。
+
+```bash
+echo 'set bell-style none' > ~/.inputrc
+```
 
 <br><br>
 
