@@ -2,6 +2,114 @@
 
 <br><br>
 
+## Podmanをインストールする
+
+Windowsでのコンテナ利用は背後でWSL version 2が動作する。
+
+https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md
+
+githubのリリースページからインストール用のexeファイルをダウンロードして実行するだけでよい。
+
+https://github.com/containers/podman/releases
+
+
+```bash
+podman machine list
+```
+
+実行例。インストール直後は何もない。
+
+```bash
+C:\Users\iida>podman machine list
+NAME        VM TYPE     CREATED     LAST UP     CPUS        MEMORY      DISK SIZE
+```
+
+コンテナを走らせるためのベースとなる仮想マシンをインストールする。
+
+--user-mode-networkingを指定したほうがVPNとの相性は良さそう。
+
+
+```bash
+podman machine init --user-mode-networking
+```
+
+実行例
+
+```bash
+C:\Users\iida>podman machine init --user-mode-networking
+Extracting compressed file: podman-machine-default_fedora-podman-amd64-v39.0.4.tar: done
+Importing operating system into WSL (this may take a few minutes on a new WSL install)...
+インポート中です。この処理には数分かかることがあります。
+この操作を正しく終了しました。
+Configuring system...
+Generating public/private ed25519 key pair.
+Your identification has been saved in podman-machine-default
+Your public key has been saved in podman-machine-default.pub
+The key fingerprint is:
+SHA256:kg8KaE+MRRb2WCXEOI3CFeCW9pD3i7k+jGPFBLSUwO4 root@FCCLS0073460
+The key's randomart image is:
++--[ED25519 256]--+
+|*++BO+..         |
+|o*B++o.          |
+|.Oo+..           |
+|ooB..  .         |
+|oo++ .+ S        |
+|.Eo+o..+         |
+|  ++..  .        |
+| + o.            |
+|. oo.            |
++----[SHA256]-----+
+Machine init complete
+To start your machine run:
+
+        podman machine start
+```
+
+名前を指定していない場合は `podman-machine-default` という名前で仮想マシンが作られる。
+
+```bash
+C:\Users\iida>podman machine list
+NAME                     VM TYPE     CREATED         LAST UP     CPUS        MEMORY      DISK SIZE
+podman-machine-default*  wsl         53 seconds ago  Never       0           0B          620MiB
+```
+
+起動する。
+
+```bash
+podman machine start
+```
+
+SSHでログインする。
+
+```bash
+podman machine ssh
+```
+
+最新化する。
+
+```bash
+sudo dnf upgrade -y
+```
+
+Windows Terminalを使うと母艦に接続できる。
+
+VPN接続しているときは、`podman-net-usermode` を使う。
+
+管理を簡単にするためにpodman desktopもあわせてインストールしておく。
+
+https://podman-desktop.io/
+
+Visual Studio Codeに拡張機能 Docker をインストールする。
+
+拡張機能 Docker の歯車をクリックして「拡張機能の設定」をクリックする。
+
+検索欄にDockerPathを入力して検索する。
+
+「Docker (または Podman) 実行可能ファイルの名前またはパス」
+となっている項目をdockerからpodmanに書き換える。
+
+<br><br>
+
 ## ビープ音を止める
 
 コマンドを打ち間違えたときのビープ音がうるさいので抑止する。
