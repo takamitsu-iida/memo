@@ -2,32 +2,36 @@
 
 <br><br>
 
-## Podmanをインストールする
+## Podman
 
-Windowsでのコンテナ利用は背後でWSL version 2が動作する。
+WindowsでのLinuxコンテナは背後でWSL version 2が必要。
+podmanのインストールの過程でWSLをインストールすることも可能だが、
+事前にWSLが動作する環境を作っておいたほうがよい。
 
 https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md
 
-githubのリリースページからインストール用のexeファイルをダウンロードして実行するだけでよい。
+
+podmanはgithubのリリースページからインストール用のexeファイルをダウンロードして実行するだけでよい。
 
 https://github.com/containers/podman/releases
 
+
+コンテナを動作させる母艦のリストを表示。
 
 ```bash
 podman machine list
 ```
 
-実行例。インストール直後は何もない。
+実行例。podmanをインストールした直後は何もない。
 
 ```bash
 C:\Users\iida>podman machine list
 NAME        VM TYPE     CREATED     LAST UP     CPUS        MEMORY      DISK SIZE
 ```
 
-コンテナを走らせるためのベースとなる仮想マシンをインストールする。
+コンテナを走らせるための基盤となる仮想マシンをインストールする。
 
 --user-mode-networkingを指定したほうがVPNとの相性は良さそう。
-
 
 ```bash
 podman machine init --user-mode-networking
@@ -65,7 +69,7 @@ To start your machine run:
         podman machine start
 ```
 
-名前を指定していない場合は `podman-machine-default` という名前で仮想マシンが作られる。
+名前を指定しない場合は `podman-machine-default` という名前で仮想マシンが作られる。
 
 ```bash
 C:\Users\iida>podman machine list
@@ -92,8 +96,6 @@ sudo dnf upgrade -y
 ```
 
 Windows Terminalを使うと母艦に接続できる。
-
-VPN接続しているときは、`podman-net-usermode` を使う。
 
 管理を簡単にするためにpodman desktopもあわせてインストールしておく。
 
