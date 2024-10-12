@@ -77,9 +77,23 @@ NAME                     VM TYPE     CREATED         LAST UP     CPUS        MEM
 podman-machine-default*  wsl         53 seconds ago  Never       0           0B          620MiB
 ```
 
-起動する。
+起動。特に指定しなければrootレスで起動する。
 
 ```bash
+podman machine start
+```
+
+root特権を使いたい場合は、その旨指定する。
+
+```bash
+podman machine start set --rootful
+```
+
+もしくはデフォルトでrootフルになるように設定を変えても良い。
+
+```bash
+podman machine stop
+podman machine set --rootful
 podman machine start
 ```
 
@@ -101,14 +115,16 @@ Windows Terminalを使うと母艦に接続できる。
 
 https://podman-desktop.io/
 
-Visual Studio Codeに拡張機能 Docker をインストールする。
 
-拡張機能 Docker の歯車をクリックして「拡張機能の設定」をクリックする。
+### Visual Studio Codeの設定
 
-検索欄にDockerPathを入力して検索する。
+拡張機能 Docker をインストールする。
 
-「Docker (または Podman) 実行可能ファイルの名前またはパス」
-となっている項目をdockerからpodmanに書き換える。
+F1キーを押すか、Ctrl-Shift-Pを押す。
+
+Dev Containers: Settings を入力する。
+
+`Dev › Containers: Docker Path` をdockerからpodmanに書き換える。
 
 <br><br>
 

@@ -2603,6 +2603,37 @@ countryName = dict[countryCode];
  * @author K.Takami
  * @version 2012-01-24
  */
+
+function doLater(job, tmo) {
+
+    //処理が登録されているなら
+    //タイマーをキャンセル
+    var tid = doLater.TID[job];
+    if(tid != undefined) {
+        window.clearTimeout(tid);
+    }
+    //タイムアウト登録する
+    doLater.TID[job] = window.setTimeout(
+        function() {
+            //実行前にタイマーIDをクリア
+            doLater.TID[job] = undefined;
+            //登録処理を実行
+            job.call();
+        }, tmo);
+}
+
+//処理からタイマーIDへのハッシュ
+doLater.TID = {};
+```
+
+使い方の例はこちら↓
+
+```js
+function dataTable_onScroll() {
+    doLater( function () {
+        updateScreen();//画面更新処理
+    }, 300);//処理内容によって調整
+}
 ```
 
 [//]:# (@@@)
