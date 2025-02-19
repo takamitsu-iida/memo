@@ -4,6 +4,67 @@
 
 <br><br>
 
+## pyenvでインストールできないときの対処方法
+
+```bash
+pyenv update
+```
+
+で新しくしてみる。
+
+curlの問題でダウンロードできない場合はこんなログがでる。
+
+```bash
+iida@FCCLS0073460:~$ pyenv install 3.13.0
+Downloading Python-3.13.0.tar.xz...
+-> https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tar.xz
+error: failed to download Python-3.13.0.tar.xz
+
+BUILD FAILED (Ubuntu 20.04 using python-build 2.5.3-1-g47eef10)
+
+Results logged to /tmp/python-build.20250219143848.808.log
+
+Last 10 log lines:
+/tmp/python-build.20250219143848.808 ~
+curl: (60) SSL certificate problem: self signed certificate in certificate chain
+```
+
+不思議なことに、curlコマンドを手動で実行すればちゃんとダウンロードできる。
+
+ダウンロードしたファイルを `~/.pyenv/cache/` に置いておけば、ダウンロードすることなく
+キャッシュを展開してインストールしてくれる。
+
+```bash
+mkdir ~/.pyenv/cache
+cd ~/.pyenv/cache
+
+curl https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tar.xz -o  Python-3.13.0.tar.xz
+
+pyenv install 3.13.0
+```
+
+コンパイルでエラーがでるようなら、開発関連のパッケージをインストールして再チャレンジする。
+
+https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+
+上記に書かれている通りに実行しておく。
+
+```bash
+sudo apt update; sudo apt install build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl git \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+Pythonのバージョンによっては、それだけでは足りずエラーが出るかもしれない。
+その場合は、さらにこれを追加。
+
+```bash
+sudo apt install build-essential zlib1g-dev libffi-dev libssl-dev libbz2-dev libreadline-dev libsqlite3-dev liblzma-dev libncurses-dev
+sudo apt install python-tk python3-tk tk-dev
+```
+
+<br>
+
 ## WSLでのPython実行環境整備
 
 ### venvをインストール
