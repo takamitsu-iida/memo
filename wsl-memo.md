@@ -138,29 +138,6 @@ echo 'set bell-style none' > ~/.inputrc
 
 <br><br>
 
-## /tmpをキレイにする
-
-WSLを使っていると/tmpに大量のファイルが残る。
-
-```
-sudo apt install tmpreaper
-sudo vi /etc/tmpreaper.conf
-```
-
-SHOWWARNING=true はコメント化して無効にする。
-
-TMPREAPER_DELAY='256' は'0'に変更する。
-
-TMPREAPER_TIME=7d はコメントアウトして有効にする。
-
-即時で実行するにはこうする。
-
-```
-sudo /etc/cron.daily/tmpreaper
-```
-
-<br><br>
-
 ## バックアップ
 
 - WSLのバックアップ
@@ -197,7 +174,30 @@ sudo apt autoremove -y
 
 <br><br>
 
-## /tmpを定期的に綺麗にする
+## /tmpをキレイにする（廃止）
+
+WSLを使っていると/tmpに大量のファイルが残る。
+
+```
+sudo apt install tmpreaper
+sudo vi /etc/tmpreaper.conf
+```
+
+SHOWWARNING=true はコメント化して無効にする。
+
+TMPREAPER_DELAY='256' は'0'に変更する。
+
+TMPREAPER_TIME=7d はコメントアウトして有効にする。
+
+即時で実行するにはこうする。
+
+```
+sudo /etc/cron.daily/tmpreaper
+```
+
+<br><br>
+
+## /tmpを定期的に綺麗にする（失敗）
 
 Ubuntuの場合はsystemdで制御する。
 
@@ -237,6 +237,73 @@ sudo systemd-tmpfiles --clean
 ```
 
 この設定でシステムが毎日自動でこの設定をチェックし、古いファイルを掃除する。
+
+★一般的なUbuntuならこれでよいが、WSLではうまく動かない。
+
+<br><br>
+
+## /tmpを定期的に綺麗にする
+
+findで消すならこれ。
+
+```bash
+sudo find /tmp -mindepth 1 -mtime +3 -not -name ".*" -not -path "/tmp/.X11-unix*" -not -path "/tmp/.ICE-unix*" -delete
+```
+
+- -mindepth 1: /tmp ディレクトリ自体が消えるのを防ぎます。
+- -mtime +3: 3日以上前に変更されたものを対象にします。
+- -not -name ".*": . から始まるシステム用の隠しファイルを保護します
+- -not -path ...: WSLやGUIが通信に使う重要なソケットの場所（.X11-unix など）を除外して安全を確保します。
+
+シェルスクリプト化する。
+
+```bash
+sudo vi /usr/local/bin/clean-tmp.sh
+```
+
+この内容を貼り付け。
+
+```text
+#!/bin/bash
+STAMP="/var/tmp/.clean_tmp_timestamp"
+
+if [ ! -f "$STAMP" ] || [ -n "$(find "$STAMP" -mmin +1440 2>/dev/null)" ]; then
+    find /tmp -mindepth 1 -mtime +3 -not -name ".*" -not -path "/tmp/.X11-unix*" -not -path "/tmp/.ICE-unix*" -delete
+    touch "$STAMP"
+fi
+```
+
+実行権限を付与。
+
+```bash
+sudo chmod a+x /usr/local/bin/clean-tmp.sh
+```
+
+sudoをパスワードなしで実行できるように設定を変更。
+
+```bash
+sudo visudo
+```
+
+末尾に以下を追記。
+
+```bash
+ALL ALL=(ALL) NOPASSWD: /usr/local/bin/clean-tmp.sh
+```
+
+WSLが起動したときに自動で動くよう、/etc/bash.bashrc を編集。
+
+```bash
+sudo vi /etc/bash.bashrc
+```
+
+末尾に以下を追記。
+
+```text
+sudo /usr/local/bin/clean-tmp.sh >/dev/null 2>&1 &
+```
+
+<br><br>
 
 ## node.jsのインストール
 
